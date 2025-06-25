@@ -1,0 +1,285 @@
+.wrapper {
+  min-height: 100vh;
+  max-width: 100vw;
+  background-color: #f8f9fc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.header {
+  position: relative;
+  background-image: url("../../assets/images/students.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 50vh;
+  width: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+}
+.blueLayer {
+  background-color: rgba(19, 91, 246, 0.733);
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+}
+
+.dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 95%;
+  height: 95%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: rgb(255, 255, 255);
+  border-radius: 50%;
+  animation: floatDot 10s linear infinite;
+  opacity: 0.8;
+}
+
+.dot:nth-child(odd) {
+  animation-duration: 12s;
+  width: 4px;
+  height: 4px;
+}
+
+.dot:nth-child(even) {
+  animation-duration: 8s;
+}
+
+.title {
+  position: absolute;
+  left: 41vw;
+  top: 10vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  line-height: 2;
+}
+.title h2 {
+  font-size: 1.5vw;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px #cccacaea;
+  padding-bottom: 0;
+}
+.title p {
+  color: rgba(232, 224, 224, 0.64);
+  font-size: 1vw;
+  font-weight: 500;
+  padding-bottom: 35px;
+}
+@keyframes floatDot {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-300px) translateX(30px);
+    opacity: 0;
+  }
+}
+
+.card {
+  background: white;
+  margin-top: -18vh;
+  padding: 2%;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.card p {
+  font-weight: 500;
+  color: rgb(96, 93, 93);
+}
+.welcome {
+  color: #4d8bff;
+  margin-bottom: 5px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  margin-top: 2.5vh;
+}
+
+.input {
+  width: 95%;
+}
+
+.passwordField {
+  position: relative;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  top: 30%;
+  color: #888;
+  cursor: pointer;
+}
+
+form .signInBtn {
+  margin-top: 1vh;
+  background-color: hsla(114, 92%, 35%, 0.832);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1vw;
+  transition: background 0.3s;
+}
+
+form .signInBtn:hover {
+  background: #5fbe5d;
+}
+
+.heart {
+  color: red;
+}
+
+@media screen and (max-width: 1280px) {
+  .title {
+    position: absolute;
+    left: 32vw;
+    top: 12vh;
+    line-height: 1.5;
+  }
+  .title h2 {
+    font-size: 3.5vw;
+    font-weight: 500;
+  }
+  .title p {
+    font-size: 2vw;
+    font-weight: 500;
+  }
+  .card {
+    width: 90%;
+    max-width: 600px;
+  }
+
+  .card p {
+    font-size: 1.5vw;
+  }
+  .welcome {
+    font-size: 2.5vw;
+  }
+
+  form .signInBtn {
+    font-size: 1.5vw;
+    padding: 10px;
+    width: 101%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .title {
+    position: absolute;
+    left: 32vw;
+    top: 4vh;
+    line-height: 1.2;
+  }
+  .title h2 {
+    font-size: 3.5vw;
+    font-weight: 500;
+  }
+  .title p {
+    font-size: 2vw;
+    font-weight: 500;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 500px;
+  }
+  form .signInBtn {
+    font-size: 1.5vw;
+    padding: 10px;
+    width: 101%;
+  }
+}
+@media screen and (max-width: 912px) {
+  .title {
+    position: absolute;
+    left: 22vw;
+    top: 12vh;
+  }
+  .title h2 {
+    font-size: 4.5vw;
+    font-weight: 500;
+  }
+  .title p {
+    font-size: 3vw;
+    font-weight: 500;
+  }
+
+  .card {
+    margin-top: -20vh;
+    padding: 3%;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 650px;
+  }
+
+  .card p {
+    font-size: 2.5vw;
+  }
+  .card h2 {
+    font-size: 4vw;
+  }
+  .form label {
+    font-size: 3vw;
+  }
+
+  form .signInBtn {
+    padding: 10px;
+    font-size: 3vw;
+    width: 101%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .title {
+    position: absolute;
+    left: 22vw;
+  }
+  .title h2 {
+    font-size: 4.5vw;
+    font-weight: 500;
+  }
+  .title p {
+    font-size: 3vw;
+    font-weight: 500;
+  }
+
+  .card {
+    margin-top: -25vh;
+  }
+
+  .card p {
+    font-size: 3vw;
+  }
+  .card h2 {
+    font-size: 5vw;
+  }
+
+  form .signInBtn {
+    width: 100%;
+  }
+}
