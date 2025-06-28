@@ -1,13 +1,27 @@
-import React from "react";
 import styles from "./Login.module.css";
-import { FaEye } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Input } from "../../components/ui/Input";
 import { Button } from "../../components/ui/Button";
 import roundLogo from "../../assets/icons/roundLogo.png";
 import Footer from "../../components/ui/Footer";
 import { Label } from "../../components/ui/Label";
+import { UseAuth } from "../../hooks/useAuth";
+import { useState } from "react";
 
 const Login = () => {
+  const { loginData, setLoginData, loginAdmin } = UseAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setLoginData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -47,28 +61,48 @@ const Login = () => {
         <h2 className={styles.welcome}>Welcome Skyyskill Academy !</h2>
         <p>Sign in to continue to Skyyskill Academy</p>
 
-        <form className={styles.form}>
-          <Label htmlFor="email">Email </Label>
+        <div className={styles.form}>
+          <Label htmlFor="email">Email</Label>
           <Input
+            id="email"
             type="email"
+            name="email"
             placeholder="Enter email"
             className={styles.input}
+            value={loginData?.email || ""}
+            onChange={handleInputChange}
           />
 
           <Label htmlFor="password">Password</Label>
           <div className={styles.passwordField}>
             <Input
-              type="password"
+              id="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Enter password"
               className={styles.input}
+              name="password"
+              value={loginData?.password || ""}
+              onChange={handleInputChange}
             />
-            <FaEye className={styles.eyeIcon} />
+            <span
+              className={styles.eyeIcon}
+              onClick={togglePasswordVisibility}
+              role="button"
+              tabIndex={0}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
           </div>
 
-          <Button type="submit" className={styles.signInBtn}>
+          <Button
+            type="button"
+            className={styles.signInBtn}
+            onClick={loginAdmin}
+          >
             Sign In
           </Button>
-        </form>
+        </div>
       </div>
       <Footer
         academyName="Skyyskill Academy"

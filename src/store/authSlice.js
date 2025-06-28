@@ -1,44 +1,52 @@
 import { createSlice } from "@reduxjs/toolkit";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    token: Cookies.get('authToken') || null,
-    isAuthenticated: !!Cookies.get('authToken'),
+    user: null,
+    token: Cookies.get("token") || null,
+    isAuthenticated: !!Cookies.get("token"),
     loading: false,
-    error: null
+    error: null,
   },
   reducers: {
     loginStart(state) {
       state.loading = true;
       state.error = null;
     },
+    loginStop(state) {
+      state.loading = false;
+      state.error = null;
+    },
     loginSuccess(state, action) {
-      state.token = action.payload;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
       state.isAuthenticated = true;
       state.loading = false;
-      Cookies.set('authToken', action.payload, { 
-        expires: 7, 
-        secure: true, 
-        sameSite: 'strict' 
+      Cookies.set("token", action.payload.token, {
+        expires: 7,
+        secure: true,
+        sameSite: "strict",
       });
     },
     loginFailure(state, action) {
       state.loading = false;
-      state.error = action.payload;
+      state.error =
+        typeof action.payload === "string" ? action.payload : "Login failed";
     },
     logout(state) {
+      state.user = null;
       state.token = null;
       state.isAuthenticated = false;
-      Cookies.remove('authToken');
-    }
+      state.loading = false;
+      state.error = null;
+      Cookies.remove("token");
+    },
   },
 });
 
-export const { 
-  loginStart, 
-  loginSuccess, 
-  loginFailure, 
-  logout 
-} = authSlice.actions;
+export const { loginStart, loginStop, loginSuccess, loginFailure, logout } =
+  authSlice.actions;
+
+export default authSlice.reducer;

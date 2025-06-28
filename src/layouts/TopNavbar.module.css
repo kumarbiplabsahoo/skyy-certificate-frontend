@@ -1,6 +1,7 @@
 /* src/components/Navbar/Navbar.module.css */
 .container {
-  background-color: #35444b;
+  background-color: var(--navbar-bg);
+  color: var(--text-color);
   max-width: 100vw;
   height: 70px;
 }
@@ -13,7 +14,7 @@
   margin: 0 auto;
   height: 70px;
   padding: 0 1.2rem 0 0;
-  color: white;
+  color: var(--text-color);
   flex-wrap: nowrap;
 }
 .menus {
@@ -46,8 +47,8 @@
   background-color: rgba(220, 220, 220, 0.262);
 }
 .icon {
-  font-size: 1.2rem;
-  color: #ccc;
+  font-size: 1.5rem;
+  color: var(--text-color);
   cursor: pointer;
 }
 
@@ -75,7 +76,7 @@
   justify-content: center;
   font-weight: bold;
   font-size: 2vw;
-  color: #333;
+  color: var(--text-color);
 }
 
 .profile h4 {
@@ -87,7 +88,7 @@
 .profile p {
   margin: 0;
   font-size: 0.7rem;
-  color: #ccc;
+  color: var(--text-color);
   font-weight: 500;
 }
 
