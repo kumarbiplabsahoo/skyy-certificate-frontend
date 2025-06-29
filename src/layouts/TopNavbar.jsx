@@ -17,8 +17,10 @@ import clsx from "clsx";
 import { FaBars } from "react-icons/fa";
 import profileImage from "../assets/images/profile.jpeg";
 import roundLogo from "../assets/icons/roundLogo.png";
+import { UseAuth } from "../hooks/useAuth";
 
 export default function TopNavbar({ children }) {
+  const { setlogout } = UseAuth();
   const [sideDrawToggle, setSideDrawToggle] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -78,7 +80,7 @@ export default function TopNavbar({ children }) {
       icon: <FiLogOut />,
       label: "Logout",
       danger: true,
-      // onClick: handleLogOut,
+      onClick: setlogout,
     },
   ];
   // Listen for fullscreen changes

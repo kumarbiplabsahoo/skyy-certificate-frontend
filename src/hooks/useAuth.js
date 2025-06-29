@@ -6,7 +6,7 @@ import { loginStart, loginStop, loginFailure } from "../store/authSlice";
 
 export const UseAuth = () => {
   const dispatch = useDispatch();
-  const { setlogin } = useContext(AuthContext);
+  const { setlogin, setlogout } = useContext(AuthContext);
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -30,5 +30,5 @@ export const UseAuth = () => {
     }
   };
 
-  return { loginData, setLoginData, loginAdmin };
+  return { loginData, setLoginData, loginAdmin, setlogout };
 };
