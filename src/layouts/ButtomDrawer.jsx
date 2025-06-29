@@ -2,18 +2,17 @@ import styles from "./ButtomDrawer.module.css";
 import clsx from "clsx";
 import {
   FaChevronDown,
-  FaCertificate,
   FaBook,
   FaClock,
   FaGraduationCap,
   FaUserTie,
-  FaTimes
+  FaTimes,
 } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
 
-export default function ButtomDrawer({sideDrawToggle,setSideDrawToggle}) {
+export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
   const navItems = [
-    { label: "Certificate", icon: <FaCertificate />, active: true },
-    { label: "Free Course Certificate", icon: <FaBook /> },
+    { label: "Free Course Certificate", icon: <FaBook />, active: true },
     { label: "Short Term Certificate", icon: <FaClock /> },
     { label: "Long Term Certificate", icon: <FaGraduationCap /> },
     { label: "Faculty Related Certificate", icon: <FaUserTie /> },
@@ -23,6 +22,10 @@ export default function ButtomDrawer({sideDrawToggle,setSideDrawToggle}) {
     <>
       <div className={styles.buttoDdrawer}>
         <nav className={styles.navbar}>
+          <div className={styles.navItem}>
+            <span className={styles.icon}><MdDashboard/></span>
+            <span className={styles.label}>Dashboard</span>
+          </div>
           {navItems.map((item, index) => (
             <div
               key={index}
@@ -37,11 +40,20 @@ export default function ButtomDrawer({sideDrawToggle,setSideDrawToggle}) {
           ))}
         </nav>
       </div>
-      <div className={clsx(styles.sideDrawer,sideDrawToggle? styles.open:styles.close)}>
+      <div
+        className={clsx(
+          styles.sideDrawer,
+          sideDrawToggle ? styles.open : styles.close
+        )}
+      >
         <nav className={styles.navbar}>
           <div className={styles.cancel}>
-          <FaTimes onClick={()=>setSideDrawToggle(false)}/>
-        </div>
+            <FaTimes onClick={() => setSideDrawToggle(false)} />
+          </div>
+          <div className={styles.navItem}>
+            <span className={styles.icon}><MdDashboard/></span>
+            <span className={styles.label}>Dashboard</span>
+          </div>
           {navItems.map((item, index) => (
             <div
               key={index}
