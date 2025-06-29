@@ -13,7 +13,7 @@ export const Button = ({
       className={clsx(styles.button, styles[variant], className)}
       {...props}
     >
-      {icon && <span className={styles.icon}>{icon}</span>}
+      {icon && <span className={styles.iconContainer}>{icon}</span>}
       {children}
     </button>
   );

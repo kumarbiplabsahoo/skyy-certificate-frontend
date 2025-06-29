@@ -1,9 +1,9 @@
 //api/api.js
 const LOCAL = "http://localhost:5555/api";
-const RENDER = "https://lms-backend-0v18.onrender.com/api";
+const RENDER = "https://certificate-backend-0kxm.onrender.com/api";
 
-// Set the environment: "local" | "testing" | "server"
-const ENV = "local";
+// Set the environment: "local" | "render" | "server"
+const ENV = "render";
 
 const getBaseUrl = () => {
   switch (ENV) {

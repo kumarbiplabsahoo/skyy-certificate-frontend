@@ -10,6 +10,7 @@ import MainLoader from "./components/ui/Loader";
 import TopNavbar from "./layouts/TopNavbar";
 import PrivateRoute from "./PrivateRoute";
 import { AuthProvider } from "./context/authContext";
+import { DashProvider } from "./context/dashContext";
 
 const Login = lazy(() => import("./pages/auth/Login"));
 const Dashboard = lazy(() => import("./pages/main/Index"));
@@ -36,7 +37,9 @@ function App() {
               element={
                 <Suspense fallback={<MainLoader />}>
                   <TopNavbar>
-                    <Dashboard />
+                    <DashProvider>
+                      <Dashboard />
+                    </DashProvider>
                   </TopNavbar>
                 </Suspense>
               }

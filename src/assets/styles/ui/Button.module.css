@@ -3,20 +3,26 @@
   border-radius: 0.25rem;
   font-weight: 400;
   line-height: 1.5;
-  /* color: white; */
   border: 1px solid transparent;
   transition: all 0.3s ease;
-  display: inline-flex; /* Ensures buttons stay in a row */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem; /* Creates consistent spacing between icon and text */
   vertical-align: middle;
   white-space: nowrap;
   font-size: 0.9rem;
+  cursor: pointer;
 }
-.icon {
-  font-size: 15px;
-  margin-right: 5px;
-  padding-top: 4px;
+
+/* Icon container */
+.iconContainer {
+  display: inline-flex;
+  font-size: 0.875rem; /* Reduced from 15px to ~14px */
+  width: 1em;
+  height: 1em;
+  align-items: center;
+  justify-content: center;
 }
 
 .primary {
