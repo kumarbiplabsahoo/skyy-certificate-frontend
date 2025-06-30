@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import styles from "../../assets/styles/ui/Table.module.css";
+import styles from "../../assets/styles/ui/TableData.module.css";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 
 const Table = ({ columns = [], data = [], actions = {} }) => {
