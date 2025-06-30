@@ -106,8 +106,8 @@ export default function Dashboard() {
         isAllSelected={isAllSelected}
       />
 
-      <div className={styles.tablecontainer}>
-        <Table>
+      <div className={styles.tableContainer}>
+        <Table >
           <Thead>
             <Tr>
               <Th>

@@ -12,7 +12,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   transition: all 0.2s;
-  margin-right: auto;
+  /* margin-right: auto; */
 }
 
 .bulkDeleteButton:hover {
@@ -26,16 +26,18 @@
 /* TopFilter.module.css */
 .filterContainer {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap:wrap;
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0;
   margin-bottom: 0.5rem;
+  max-width: 100vw;
+
 }
 
 .searchForm {
-  flex: 1;
+  /* flex: 1; */
   min-width: 250px;
 }
 
@@ -84,7 +86,7 @@
 }
 
 .dateFilter {
-  flex: 1;
+  /* flex: 1; */
   min-width: 250px;
 }
 
@@ -185,3 +187,12 @@
     justify-content: flex-end;
   }
 }
+ @media screen and (max-width: 600px) {
+.dateFilter {
+  min-width: 200px;
+}
+
+.dateInput {
+  width: 110px;
+} 
+  } 
