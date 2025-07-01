@@ -1,21 +1,21 @@
-import styles from './TopFilter.module.css';
-import { FiSearch, FiDownload, FiCalendar, FiTrash2 } from 'react-icons/fi';
-import { useState } from 'react';
+import styles from "./TopFilter.module.css";
+import { FiSearch, FiDownload, FiCalendar, FiTrash2 } from "react-icons/fi";
+import { useState } from "react";
 
-export default function TopFilter({ 
-  onSearch, 
-  onDateFilter, 
-  onExportPDF, 
-  onExportXLSX, 
+export default function TopFilter({
+  onSearch,
+  onDateFilter,
+  onExportPDF,
+  onExportXLSX,
   onExportCSV,
   onBulkDelete,
   selectedCount = 0,
-  isAllSelected
+  isAllSelected,
 }) {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [dateRange, setDateRange] = useState({
-    from: '',
-    to: ''
+    from: "",
+    to: "",
   });
 
   const handleSearch = (e) => {
@@ -25,7 +25,7 @@ export default function TopFilter({
 
   const handleDateChange = (e) => {
     const { name, value } = e.target;
-    setDateRange(prev => ({ ...prev, [name]: value }));
+    setDateRange((prev) => ({ ...prev, [name]: value }));
   };
 
   const applyDateFilter = () => {
@@ -38,7 +38,7 @@ export default function TopFilter({
     <div className={styles.filterContainer}>
       {/* Bulk Delete Button (left side) */}
       {isAllSelected && (
-        <button 
+        <button
           onClick={onBulkDelete}
           className={styles.bulkDeleteButton}
           aria-label="Bulk delete"
@@ -49,9 +49,10 @@ export default function TopFilter({
       )}
 
       {/* Search Input */}
-      <form onSubmit={handleSearch} className={styles.searchForm}>
+      <form onSubmit={handleSearch} className={styles.searchForm} id="search">
         <div className={styles.searchWrapper}>
           <input
+            id="search"
             type="text"
             placeholder="Search certificates..."
             value={searchTerm}
@@ -86,8 +87,8 @@ export default function TopFilter({
             className={styles.dateInput}
             placeholder="To"
           />
-          <button 
-            type="button" 
+          <button
+            type="button"
             onClick={applyDateFilter}
             className={styles.dateApplyButton}
           >
@@ -98,24 +99,24 @@ export default function TopFilter({
 
       {/* Export Buttons */}
       <div className={styles.exportButtons}>
-        <button 
-          onClick={onExportPDF} 
+        <button
+          onClick={onExportPDF}
           className={styles.exportButton}
           aria-label="Export PDF"
         >
           <FiDownload className={styles.exportIcon} />
           <span>PDF</span>
         </button>
-        <button 
-          onClick={onExportXLSX} 
+        <button
+          onClick={onExportXLSX}
           className={styles.exportButton}
           aria-label="Export Excel"
         >
           <FiDownload className={styles.exportIcon} />
           <span>Excel</span>
         </button>
-        <button 
-          onClick={onExportCSV} 
+        <button
+          onClick={onExportCSV}
           className={styles.exportButton}
           aria-label="Export CSV"
         >

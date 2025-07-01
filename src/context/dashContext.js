@@ -1,7 +1,13 @@
-import { createContext, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCertificates } from "../api/dashService";
-import { setCerificates } from "../store/dashSlice";
+import { setCerificates, startloading, stoploading } from "../store/dashSlice";
 
 export const DashContext = createContext();
 
@@ -13,6 +19,7 @@ export const DashProvider = ({ children }) => {
   const [recordsPerPage, setRecordsPerPage] = useState(10);
 
   const fetchAllBatches = useCallback(async () => {
+    dispatch(startloading());
     try {
       const response = await getAllCertificates(currentPage, recordsPerPage);
       const { data, message } = response;
@@ -25,6 +32,8 @@ export const DashProvider = ({ children }) => {
       }
     } catch (err) {
       console.error("batches data couldn't get", err);
+    } finally {
+      dispatch(stoploading());
     }
   }, [currentPage, recordsPerPage, dispatch]);
 
@@ -46,12 +55,17 @@ export const DashProvider = ({ children }) => {
       setRecordsPerPage,
       fetchAllBatches,
     }),
-    [certificates, totalPages, totalRecords, currentPage, recordsPerPage, fetchAllBatches]
+    [
+      certificates,
+      totalPages,
+      totalRecords,
+      currentPage,
+      recordsPerPage,
+      fetchAllBatches,
+    ]
   );
 
   return (
-    <DashContext.Provider value={contextValue}>
-      {children}
-    </DashContext.Provider>
+    <DashContext.Provider value={contextValue}>{children}</DashContext.Provider>
   );
 };

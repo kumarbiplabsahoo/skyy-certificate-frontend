@@ -20,8 +20,11 @@
 .menus {
   display: none;
 }
-.roundLogo{
+.roundLogo {
   width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .logo {
   font-weight: bold;
@@ -30,7 +33,7 @@
 .left {
   display: flex;
   align-items: center;
-  justify-content:start;
+  justify-content: start;
   gap: 12px;
 }
 .right {
@@ -70,13 +73,11 @@
   border-radius: 50%;
 }
 
-
 .profile h4 {
   margin: 0;
   font-size: 0.9rem;
   font-weight: 600;
-    color: var(--navbar-text-color);
-
+  color: var(--navbar-text-color);
 }
 
 .profile p {
@@ -86,14 +87,13 @@
   font-weight: 500;
 }
 @media screen and (max-width: 1280px) {
-.navbar {
-  width: 87.7%;
-}
-.profile {
-  
-  padding: 2.2vh 0vw;
-}
+  .navbar {
+    width: 87.7%;
   }
+  .profile {
+    padding: 2.2vh 0vw;
+  }
+}
 @media screen and (max-width: 912px) {
   .left {
     gap: 15px;
@@ -105,9 +105,9 @@
   .menuHide {
     visibility: hidden;
   }
-  .roundLogo{
-  width: 50px;
-}
+  .roundLogo {
+    width: 50px;
+  }
   .logo {
     /* font-weight: bold; */
     font-size: 1.2rem;
@@ -152,10 +152,10 @@
   .logo {
     font-size: 7.5px;
   }
- .roundLogo{
-  width: 30px;
-}
- 
+  .roundLogo {
+    width: 30px;
+  }
+
   .icon {
     font-size: 13px;
   }

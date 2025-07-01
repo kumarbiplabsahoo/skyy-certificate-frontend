@@ -1,12 +1,13 @@
 import TopFilter from "../../components/dashboard/TopFilter";
 import { Table, Thead, Tbody, Tr, Th, Td } from "../../components/ui/Table";
-import { FiEye, FiEdit, FiTrash } from "react-icons/fi";
+import { FiEdit, FiTrash } from "react-icons/fi";
 import styles from "./style.module.css";
 import { Button } from "../../components/ui/Button";
 import { Pagination } from "../../components/ui/Pagination";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { UseDash } from "../../hooks/useDash";
+import InlineLoader from "../../components/ui/InlineLoader";
 
 const coreHrData = [
   {
@@ -58,6 +59,7 @@ const coreHrData = [
 
 export default function Dashboard() {
   const { certificates } = useSelector((state) => state.dash);
+  const { loading } = useSelector((state) => state.dash);
   const {
     totalPages,
     totalRecords,
@@ -106,87 +108,94 @@ export default function Dashboard() {
         isAllSelected={isAllSelected}
       />
 
-      <div className={styles.tableContainer}>
-        <Table >
-          <Thead>
-            <Tr>
-              <Th>
-                <input
-                  type="checkbox"
-                  onChange={handleSelectAll}
-                  className={styles.checkbox}
-                />
-              </Th>
-              <Th>Sl.No</Th>
-              <Th>Types</Th>
-              <Th>Email Id</Th>
-              <Th>Student Name</Th>
-              <Th>Duration</Th>
-              <Th>Course</Th>
-              <Th>Date</Th>
-              <Th>Action</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {certificates.length > 0 ? (
-              certificates.map((certificate, index) => (
-                <Tr key={certificate._id}>
-                  <Td>
+      {loading ? (
+        <InlineLoader />
+      ) : (
+        <>
+          <div className={styles.tableContainer}>
+            <Table>
+              <Thead>
+                <Tr>
+                  <Th>
                     <input
+                      id="check"
                       type="checkbox"
-                      checked={selectedItems.includes(certificate._id)}
-                      onChange={() => handleSelect(certificate._id)}
+                      onChange={handleSelectAll}
                       className={styles.checkbox}
                     />
-                  </Td>
-                  <Td>{index + 1}</Td>
-                  <Td>{certificate.CertTemplate}</Td>
-                  <Td>{certificate.recipientEmail}</Td>
-                  <Td>{certificate.StudentName}</Td>
-                  <Td>{certificate.Duration}</Td>
-                  <Td>{certificate.Course}</Td>
-                  <Td>
-                    {" "}
-                    {new Date(certificate.createdAt).toLocaleString()}
-                  </Td>
-                  <Td>
-                    <div className={styles.actions}>
-                      {/* <Button
+                  </Th>
+                  <Th>Sl.No</Th>
+                  <Th>Types</Th>
+                  <Th>Email Id</Th>
+                  <Th>Student Name</Th>
+                  <Th>Duration</Th>
+                  <Th>Course</Th>
+                  <Th>Date</Th>
+                  <Th>Action</Th>
+                </Tr>
+              </Thead>
+              <Tbody>
+                {certificates.length > 0 ? (
+                  certificates.map((certificate, index) => (
+                    <Tr key={certificate._id}>
+                      <Td>
+                        <input
+                          id={`check-${index}`}
+                          type="checkbox"
+                          checked={selectedItems.includes(certificate._id)}
+                          onChange={() => handleSelect(certificate._id)}
+                          className={styles.checkbox}
+                        />
+                      </Td>
+                      <Td>{index + 1}</Td>
+                      <Td>{certificate.CertTemplate}</Td>
+                      <Td>{certificate.recipientEmail}</Td>
+                      <Td>{certificate.StudentName}</Td>
+                      <Td>{certificate.Duration}</Td>
+                      <Td>{certificate.Course}</Td>
+                      <Td>
+                        {" "}
+                        {new Date(certificate.createdAt).toLocaleString()}
+                      </Td>
+                      <Td>
+                        <div className={styles.actions}>
+                          {/* <Button
                         variant="success"
                         icon={<FiEye className={styles.icon} />}
                       /> */}
-                      <Button
-                        variant="info"
-                        icon={<FiEdit className={styles.icon} />}
-                      />
-                      <Button
-                        variant="danger"
-                        icon={<FiTrash className={styles.icon} />}
-                      />
-                    </div>
-                  </Td>
-                </Tr>
-              ))
-            ) : (
-              <Tr>
-                <Td colSpan="9" style={{ textAlign: "center" }}>
-                  No Data Available
-                </Td>
-              </Tr>
-            )}
-          </Tbody>
-        </Table>
-      </div>
-
-      {/* Pagination */}
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        onPageChange={(page) => setCurrentPage(page)}
-        recordsPerPage={recordsPerPage}
-        totalRecords={totalRecords}
-      />
-      {/* Pagination */}
+                          <Button
+                            variant="info"
+                            icon={<FiEdit className={styles.icon} />}
+                          />
+                          <Button
+                            variant="danger"
+                            icon={<FiTrash className={styles.icon} />}
+                          />
+                        </div>
+                      </Td>
+                    </Tr>
+                  ))
+                ) : (
+                  <Tr>
+                    <Td colSpan="9" style={{ textAlign: "center" }}>
+                      No Data Available
+                    </Td>
+                  </Tr>
+                )}
+              </Tbody>
+            </Table>
+          </div>
+          {/* Pagination */}
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={(page) => setCurrentPage(page)}
+            recordsPerPage={recordsPerPage}
+            totalRecords={totalRecords}
+          />
+          {/* Pagination */}
+        </>
+      )}
     </div>
   );
 }

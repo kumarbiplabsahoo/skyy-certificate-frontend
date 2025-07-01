@@ -16,7 +16,7 @@ import { useEffect, useState, useRef } from "react";
 import clsx from "clsx";
 import { FaBars } from "react-icons/fa";
 import profileImage from "../assets/images/profile.jpeg";
-import roundLogo from "../assets/icons/roundLogo.png";
+import roundLogo from "../assets/icons/whiteicon.png";
 import { UseAuth } from "../hooks/useAuth";
 
 export default function TopNavbar({ children }) {

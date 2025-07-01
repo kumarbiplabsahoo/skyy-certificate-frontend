@@ -1,11 +1,13 @@
+/* BottomDrawer.module.css */
+
+/* Base Styles */
 .buttoDdrawer {
   max-width: 100vw;
+  width: 100%;
   background-color: var(--bg-color);
   box-shadow: 0 2px 4px var(--box-shadow);
 }
-.sideDrawer {
-  display: none;
-}
+
 .navbar {
   display: flex;
   align-items: center;
@@ -14,129 +16,211 @@
   padding: 1.2vh 0;
   gap: 1.7vw;
 }
+
 .navItem {
   display: flex;
   align-items: center;
   color: var(--text-color);
   font-weight: 500;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
   gap: 0.6vw;
+  padding: 0.5rem 0;
+  user-select: none; /* Prevent text selection when clicking */
 }
 
 .navItem:hover {
   color: #007bff;
+  background-color: transparent;
 }
 
 .icon {
   font-size: 1vw;
-  margin-top: 5px;
+  min-width: 1.5vw;
+  display: flex;
+  justify-content: center;
 }
 
 .label {
   font-size: 0.9vw;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .chevron {
   font-size: 0.7vw;
-  margin-top: 5px;
+  margin-left: 0.3vw;
+  transition: transform 0.3s ease;
 }
 
 .active {
   color: #3b82f6;
 }
- @media screen and (max-width: 1280px) {
-.navbar {
-  
-  width: 87.5%;
- 
+
+/* Side Drawer (Mobile) Styles */
+.sideDrawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background-color: var(--bg-color);
+  box-shadow: 2px 0 10px var(--box-shadow);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  padding-top: 70px;
 }
-  } 
-@media screen and (max-width: 912px) { 
+
+.cancel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.close {
+  transform: translateX(-100%);
+}
+
+/* Mobile Navbar Styles */
+.mobileNavItem {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.mobileNavHeader {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.mobileNavHeader.active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.mobileSubmenu {
+  padding-left: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.mobileSubmenuItem {
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileSubmenuHeader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.mobileNestedSubmenu {
+  padding-left: 1rem;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.mobileNestedSubmenuItem {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.mobileNestedSubmenuItem:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.chevron.rotate {
+  transform: rotate(180deg);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1280px) {
+  .navbar {
+    width: 87.5%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .navbar {
+    gap: 1rem;
+  }
+
+  .icon {
+    font-size: 1.2vw;
+  }
+
+  .label {
+    font-size: 1.1vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
   .buttoDdrawer {
     display: none;
   }
+
   .sideDrawer {
-    display: flex;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 28vw;
-    height: 100vh;
-    background-color: var(--bg-color);
-  box-shadow: 2px 0 10px var(--box-shadow); /* horizontal, vertical, blur, color */
-    transition: transform 0.5s ease;
-  }
-  .cancel {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    font-size: 30px;
-  }
-  .open {
-    transform: translateX(0px);
-  }
-  .close {
-    transform: translateX(-275px);
+    display: block;
   }
 
   .navbar {
-    display: flex;
     flex-direction: column;
-    align-items: start;
-    width: 83.2%;
-  }
-  .navItem {
-    display: flex;
-    align-items: center;
-    color: var(--text-color);
-    font-weight: 500;
-    cursor: pointer;
-    transition: color 0.3s;
-    gap: 0.6vw;
+    align-items: flex-start;
+    width: 100%;
+    padding: 1rem 0;
+    gap: 0;
   }
 
-  .navItem:hover {
-    color: #007bff;
+  .navItem {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    gap: 1rem;
   }
 
   .icon {
-    font-size: 1.8vw;
-    margin-top: 5px;
+    font-size: 1.2rem;
+    min-width: 24px;
   }
 
   .label {
-    font-size: 1.6vw;
+    font-size: 1rem;
+    flex-grow: 1;
   }
 
   .chevron {
-    font-size: 1.2vw;
-  }
-
-  .active {
-    color: #3b82f6; /* blue-500 */
+    font-size: 0.9rem;
   }
 }
-@media screen and (max-width: 600px) {
-  .buttoDdrawer {
-    display: none;
+
+@media screen and (max-width: 480px) {
+  .sideDrawer {
+    width: 85%;
   }
-  .cancel {
-    font-size: 15px;
+
+  .mobileNavHeader,
+  .mobileSubmenuItem,
+  .mobileNestedSubmenuItem {
+    padding: 0.75rem 1rem;
   }
 
   .icon {
-    font-size: 1.8vw;
+    font-size: 1rem;
   }
 
   .label {
-    font-size: 1.6vw;
-    margin-top: 4px;
-  }
-
-  .chevron {
-    font-size: 1.2vw;
+    font-size: 0.9rem;
   }
 }
