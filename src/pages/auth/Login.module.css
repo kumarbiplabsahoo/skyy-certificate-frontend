@@ -133,7 +133,7 @@
 .eyeIcon {
   position: absolute;
   right: 10px;
-  top: 15%;
+  top: 17%;
   color: #888;
   cursor: pointer;
 }
@@ -187,10 +187,15 @@
     font-size: 2.5vw;
   }
 
-  form .signInBtn {
+  .form .signInBtn {
     font-size: 1.5vw;
     padding: 10px;
     width: 101%;
+  }
+  .eyeIcon {
+    top: 19%;
+    right: 20px;
+    font-size: 20px;
   }
 }
 @media screen and (max-width: 1024px) {
@@ -213,10 +218,14 @@
     width: 90%;
     max-width: 500px;
   }
-  form .signInBtn {
+  .form .signInBtn {
     font-size: 1.5vw;
     padding: 10px;
     width: 101%;
+  }
+   .eyeIcon {
+    
+    font-size: 17px;
   }
 }
 @media screen and (max-width: 912px) {
@@ -252,10 +261,14 @@
     font-size: 3vw;
   }
 
-  form .signInBtn {
+  .form .signInBtn {
     padding: 10px;
     font-size: 3vw;
     width: 101%;
+  }
+  .eyeIcon {
+    
+    font-size: 20px;
   }
 }
 
@@ -284,7 +297,11 @@
     font-size: 5vw;
   }
 
-  form .signInBtn {
+  .form .signInBtn {
     width: 100%;
+  }
+  .eyeIcon {
+    font-size: 15px;
+    height: 11%;
   }
 }

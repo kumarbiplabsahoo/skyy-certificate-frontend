@@ -9,7 +9,8 @@
 .container {
   width: 100%;
   padding: 0.5rem 5rem;
-  background-color: #f8fafc;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   min-height: 85vh;
 }
 

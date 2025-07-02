@@ -94,6 +94,12 @@
     padding: 2.2vh 0vw;
   }
 }
+@media screen and (max-width: 1024px) {
+  .roundLogo {
+    width: 40px;
+    height: 40px;
+  }
+}
 @media screen and (max-width: 912px) {
   .left {
     gap: 15px;
@@ -107,6 +113,7 @@
   }
   .roundLogo {
     width: 50px;
+    height: 50px;
   }
   .logo {
     /* font-weight: bold; */
@@ -152,9 +159,13 @@
   .logo {
     font-size: 7.5px;
   }
-  .roundLogo {
-    width: 30px;
-  }
+    .roundLogo {
+  width: 30px;
+  height: 30px;
+  /* border-radius: 50%;
+  object-fit: cover; */
+}
+  
 
   .icon {
     font-size: 13px;

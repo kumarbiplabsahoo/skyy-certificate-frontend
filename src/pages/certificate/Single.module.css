@@ -1,0 +1,171 @@
+.singleCertificate {
+  width: 90%;
+  margin: auto;
+}
+.topBox {
+  width: 100%;
+  margin: auto;
+  height: 25vh;
+  border: 2px solid black;
+  margin-top: 2vh;
+  border-radius: 10px;
+  background-color: rgba(238, 238, 242, 0.514);
+  box-shadow: 0 4px 12px #1c1c1c96; /* Smooth shadow */
+}
+.container {
+  width: 100%;
+  min-height: 70vh;
+  margin: auto;
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: top;
+  justify-content: space-between;
+  /* gap: 1vw; */
+}
+.form {
+  width: 40%;
+  height: 60vh;
+  border: 3px solid var(--box-border);
+  border-radius: 6px;
+  padding: 1rem;
+}
+.formBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: start;
+  gap: 1rem;
+}
+.stuName {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-wrap: nowrap;
+  gap: 5px;
+}
+.input{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+.stuInput {
+  width: 100%;
+  background-color: var(--bg-color);
+    color: var(--text-color);
+}
+.select {
+  padding: 10px;
+  background-color: var(--bg-color);
+    color: var(--text-color);
+}
+.certificate {
+  position: relative;
+  width: 59%;
+  max-height: 100vh;
+  border: 3px solid var(--box-border);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cirtImage {
+  width: 700px;
+  /* height: auto; */
+  /* display: block; */
+}
+.downloadButton {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  cursor: pointer;
+}
+.zoomWrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 500px;
+  /* border: 2px solid #ccc */
+  position: relative;
+}
+
+.cirtImage {
+  user-select: none;
+  transition: transform 0.1s ease;
+  will-change: transform;
+}
+
+@media (max-width:1024px) {
+    .form{
+        height: 80vh;
+    }
+    
+}
+@media (max-width: 912px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .form {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .formBox {
+    height: auto;
+    gap: 0.75rem;
+  }
+
+  .certificate {
+    width: 100%;
+    padding: 1rem;
+    height:50vh;
+    position: relative;
+  }
+ .zoomWrapper {
+    height: 550px;
+  } 
+
+  .cirtImage {
+    width: 100%;
+    max-width: 100%;
+    /* height: auto; */
+  }
+
+  .downloadButton {
+    width: 95%;
+    position: absolute;
+    transform: none;
+    margin-top: 1rem;
+    transform: translateX(-385px);
+  }
+
+  .stuName {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .select,
+  .stuInput {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .downloadButton {
+    
+    transform: translateX(-160px);
+  }
+.zoomWrapper {
+    height: 350px;
+  } 
+}

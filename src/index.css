@@ -7,7 +7,14 @@
   --text-color: #333333;
   --navbar-bg: #40139f;
   --navbar-text-color: #ffffff;
-  --box-shadow:rgba(0, 0, 0, 0.05);
+  --box-shadow: rgba(0, 0, 0, 0.05);
+  --box-border: #e2e8f0;
+
+  --table-head-bg: #f1f1f1;
+  --table-tr-even-bg: #f2f2f2;
+  --table-tr-odd-bg: #ffffff;
+  --table-td-text: #555;
+  --table-border: #ddd;
   /* Add other light mode variables */
 }
 
@@ -17,8 +24,14 @@
   --text-color: #f0f0f0;
   --navbar-bg: #2d2d2d;
   --navbar-text-color: #ffffff;
-  --box-shadow:rgba(244, 239, 239, 0.421);
-
+  --box-shadow: rgba(244, 239, 239, 0.421);
+ --box-border: #2d3748;
+ 
+  --table-head-bg: #2d2d2d;
+  --table-tr-even-bg: #2d2d2d;
+  --table-tr-odd-bg: #1a1a1a;
+  --table-td-text: #e0e0e0;
+  --table-border: #757583;
   /* Add other dark mode variables */
 }
 

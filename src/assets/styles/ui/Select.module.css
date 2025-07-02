@@ -2,5 +2,11 @@
   padding: 0.5rem;
   border-radius: 4px;
   border: 1px solid #ccc;
+  outline: none;
+
   /* font-size: 1vw; */
+}
+.select:focus{
+  border: 2px solid #4949e9;
+  box-shadow: 0 0px 1px #4949e9;
 }

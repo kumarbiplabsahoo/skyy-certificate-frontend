@@ -3,12 +3,12 @@
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
-  color: #374151; /* gray-700 */
+  color: var(--table-td-text); /* #374151 */
   margin-top: 1rem;
 }
 
 .pageInfo {
-  color: #374151;
+  color: var(--table-td-text);
 }
 
 .pagination {
@@ -21,8 +21,8 @@
   padding: 6px 12px;
   border-radius: 6px;
   border: 1px solid #d1d5db;
-  background-color: white;
-  color: #4b5563;
+  background-color: var(--table-head-bg);
+  color: var(--table-td-text);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -32,8 +32,10 @@
 }
 
 .pageButton:disabled {
-  background-color: #f9fafb; /* gray-50 */
-  color: #9ca3af;
+  /* background-color: #f9fafb; 
+  color: #9ca3af; */
+  background-color: var(--table-head-bg);
+  color: var(--table-td-text);
   cursor: not-allowed;
 }
 
@@ -46,8 +48,10 @@
 
 .prevNext {
   border-radius: 6px;
-  background-color: #f3f4f6;
-  color: #6b7280;
+  /* background-color: #f3f4f6;
+  color: #6b7280; */
+  background-color: var(--table-head-bg);
+  color: var(--table-td-text);
 }
 
 .ellipsis {

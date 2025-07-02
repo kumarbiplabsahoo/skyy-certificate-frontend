@@ -167,13 +167,14 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 912px) {
   .buttoDdrawer {
     display: none;
   }
 
   .sideDrawer {
     display: block;
+    width: 35%;
   }
 
   .navbar {
@@ -182,6 +183,10 @@
     width: 100%;
     padding: 1rem 0;
     gap: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
   }
 
   .navItem {
@@ -207,7 +212,7 @@
 
 @media screen and (max-width: 480px) {
   .sideDrawer {
-    width: 85%;
+    width: 70%;
   }
 
   .mobileNavHeader,
