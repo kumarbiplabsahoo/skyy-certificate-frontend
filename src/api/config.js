@@ -3,7 +3,7 @@ const LOCAL = "http://localhost:5555/api";
 const RENDER = "https://certificate-backend-0kxm.onrender.com/api";
 
 // Set the environment: "local" | "render" | "server"
-const ENV = "render";
+const ENV = "local";
 
 const getBaseUrl = () => {
   switch (ENV) {

@@ -17,7 +17,7 @@ export const UseAuth = () => {
     dispatch(loginStart());
     try {
       const loginresponse = await authLogin(loginData);
-      console.log(loginresponse, "loginresponse");
+
       if (loginresponse?.success) {
         dispatch(setlogin(loginresponse?.data));
       } else {

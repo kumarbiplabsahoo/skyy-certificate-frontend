@@ -14,7 +14,8 @@ import { AuthProvider } from "./context/authContext";
 import { DashProvider } from "./context/dashContext";
 import AuthLoader from "./components/AuthLoader";
 import Bulk from "./pages/certificate/Bulk";
-import Single from "./pages/certificate/Single";
+import { SingleProvider } from "./context/singleContext";
+import SingleCerificate from "./pages/certificate/SingleCerificate";
 
 const Login = lazy(() => import("./pages/auth/Login"));
 const Dashboard = lazy(() => import("./pages/main/Index"));
@@ -57,7 +58,9 @@ function App() {
               element={
                 <Suspense fallback={<MainLoader />}>
                   <TopNavbar>
-                    <Single />
+                    <SingleProvider>
+                      <SingleCerificate />
+                    </SingleProvider>
                   </TopNavbar>
                 </Suspense>
               }
