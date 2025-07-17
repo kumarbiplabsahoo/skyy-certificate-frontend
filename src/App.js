@@ -13,9 +13,9 @@ import PrivateRoute from "./PrivateRoute";
 import { AuthProvider } from "./context/authContext";
 import { DashProvider } from "./context/dashContext";
 import AuthLoader from "./components/AuthLoader";
-import Bulk from "./pages/certificate/Bulk";
+import BulkCertificate from "./pages/certificate/BulkCertificate";
 import { SingleProvider } from "./context/singleContext";
-import SingleCerificate from "./pages/certificate/SingleCerificate";
+import SingleCertficate from "./pages/certificate/SingleCertficate";
 
 const Login = lazy(() => import("./pages/auth/Login"));
 const Dashboard = lazy(() => import("./pages/main/Index"));
@@ -59,7 +59,7 @@ function App() {
                 <Suspense fallback={<MainLoader />}>
                   <TopNavbar>
                     <SingleProvider>
-                      <SingleCerificate />
+                      <SingleCertficate />
                     </SingleProvider>
                   </TopNavbar>
                 </Suspense>
@@ -73,7 +73,7 @@ function App() {
               element={
                 <Suspense fallback={<MainLoader />}>
                   <TopNavbar>
-                    <Bulk />
+                    <BulkCertificate />
                   </TopNavbar>
                 </Suspense>
               }

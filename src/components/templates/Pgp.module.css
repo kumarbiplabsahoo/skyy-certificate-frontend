@@ -1,0 +1,31 @@
+.qrCodeBox {
+  position: absolute;
+  bottom: 4%;
+  right: 4%;
+  background: white;
+  padding: 4px;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.studentNameBox {
+  position: absolute;
+  top: 35%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.studentName {
+  font-family: "Dutch801", serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.8vw;
+  color: #cba65a;
+  margin-bottom: 1%;
+}

@@ -46,8 +46,7 @@ export const UseSingle = () => {
     { label: "Title", value: "" },
     { label: "Mr.", value: "Mr." },
     { label: "Mrs.", value: "Mrs." },
-    { label: "Ms.", value: "Ms." },
-    { label: "Miss", value: "Miss" },
+    { label: "Miss.", value: "Miss." },
   ];
 
   return {

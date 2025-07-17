@@ -1,0 +1,143 @@
+.certNumberBox {
+  position: absolute;
+  top: 6%;
+  left: 5%;
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.7vw;
+  color: black;
+}
+
+.collegeImg {
+  position: absolute;
+  top: 12%;
+  left: 5%;
+  padding: 4px;
+  width: 96%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.collegeImg .imgCollage {
+  width: 15%;
+  object-fit: contain;
+}
+
+.qrCodeBox {
+  position: absolute;
+  bottom: 2%;
+  left: 2%;
+  background: white;
+  padding: 4px;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.studentNameBox {
+  position: absolute;
+  top: 44%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.studentName {
+  font-family: "Dutch801", serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.8vw;
+  color: #cba65a;
+  margin-bottom: 1%;
+}
+
+.departmentNameBox {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.departmentName {
+  font-family: "Dutch801";
+  font-style: italic;
+  font-weight: 200;
+  font-size: 1vw;
+  color: #000000;
+}
+
+/* Main Wrapper */
+.signatureWrapper {
+  position: absolute;
+  bottom: -4%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 8rem;
+  box-sizing: border-box;
+}
+
+/* Each Signature Container */
+.signatureContainer {
+  width: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 10rem; /* Fixed height to keep both equal */
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Signature Image Box */
+.signatureImageBox {
+  height: 3.5rem;
+  width: 7.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.4rem;
+  overflow: hidden;
+}
+
+/* Image */
+.signatureImage {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Signature Text */
+.signatureDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.2rem;
+  width: 100%;
+  min-height: 6rem; /* lock the height so both blocks are equal */
+}
+
+/* Title */
+.signatureTitle {
+  font-size: 0.65rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Subtitle */
+.signatureSubtitle {
+  font-size: 0.65rem;
+  color: #444;
+  line-height: 1.2;
+  margin: 0;
+}

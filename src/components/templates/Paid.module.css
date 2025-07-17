@@ -1,0 +1,41 @@
+.certNumberBox {
+  position: absolute;
+  top: 11%;
+  left: 20%;
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.7vw;
+  color: black;
+}
+
+.qrCodeBox {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  background: white;
+  padding: 4px;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.studentNameBox {
+  position: absolute;
+  top: 48%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.studentName {
+  font-family: "Alex Brush", serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.8vw;
+  color: #061d49;
+  margin-bottom: 1%;
+}

@@ -1,0 +1,10 @@
+.certNumberBox {
+  position: absolute;
+  top: 12%;
+  left: 5%;
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.7vw;
+  color: black;
+  font-weight: bold;
+}

@@ -1,4 +1,5 @@
 import styles from "./FormCompo.module.css";
+import { useEffect } from "react";
 
 const FormComponent = ({
   formData = {},
@@ -15,6 +16,43 @@ const FormComponent = ({
       [name]: value,
     }));
   };
+
+  const handleImageChange = (e) => {
+    const { name } = e.target;
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setFormData((prev) => ({
+          ...prev,
+          [name]: {
+            file: file,        // Store the file object
+            preview: reader.result, // Store the preview URL
+          },
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files[0], // Store the file object
+    }));
+  };
+
+  // Clean up object URLs when component unmounts
+  useEffect(() => {
+    return () => {
+      elements.forEach(element => {
+        if (element.fieldType === "ImageUpload" && formData[element.name]?.preview) {
+          URL.revokeObjectURL(formData[element.name].preview);
+        }
+      });
+    };
+  }, [formData, elements]);
 
   return (
     <div className={styles.formContainer}>
@@ -75,6 +113,50 @@ const FormComponent = ({
                 </div>
               );
 
+            case "ImageUpload":
+              return (
+                <div key={element.key} className={styles.formField}>
+                  <label className={styles.label}>
+                    {element.label} <span className={styles.required}>*</span>
+                  </label>
+                  <input
+                    type="file"
+                    className={styles.fileInput}
+                    name={element.name}
+                    accept={element.accept || "image/*"}
+                    onChange={handleImageChange}
+                  />
+                  {formData[element.name]?.file && (
+                    <div className={styles.filePreview}>
+                      <div className={styles.fileName}>
+                        Selected: {formData[element.name].file.name}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+
+            case "FileUpload":
+              return (
+                <div key={element.key} className={styles.formField}>
+                  <label className={styles.label}>
+                    {element.label} <span className={styles.required}>*</span>
+                  </label>
+                  <input
+                    type="file"
+                    className={styles.fileInput}
+                    name={element.name}
+                    accept={element.accept}
+                    onChange={handleFileChange}
+                  />
+                  {formData[element.name] && (
+                    <div className={styles.fileName}>
+                      Selected: {formData[element.name].name}
+                    </div>
+                  )}
+                </div>
+              );
+
             default:
               return null;
           }
@@ -84,11 +166,7 @@ const FormComponent = ({
       {error && <div className={styles.error}>{error}</div>}
 
       <div className={styles.submitButton}>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={handleSubmit}
-        >
+        <button type="button" className={styles.button} onClick={handleSubmit}>
           {ButtonTitle}
         </button>
       </div>

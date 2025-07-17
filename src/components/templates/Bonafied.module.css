@@ -1,0 +1,71 @@
+.dateBox{
+  position: absolute;
+  top: 12%;
+  left: 5%;
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.7vw;
+  color: black;
+  font-weight: bold;
+}
+
+.certNumberBox {
+  position: absolute;
+  top: 14%;
+  left: 5%;
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.7vw;
+  color: black;
+  font-weight: bold;
+}
+
+.qrCodeBox {
+  position: absolute;
+  top: 12%;
+  right: 5%;
+  background: white;
+  padding: 4px;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Signature Image Box */
+/* Signature Block Fixed Bottom Left */
+.signatureBlock {
+  position: absolute;
+  bottom: 15%;
+  left: 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 6px;
+}
+
+/* Signature Image */
+.signatureImage {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Signature Name & Designation */
+.signatureText {
+  font-size: 14px;
+  font-weight: bold;
+  font-family: "Segoe UI", sans-serif;
+  line-height: 1.4;
+  color: #000;
+}
+
+.signatureText span {
+  display: block;
+  font-weight: bold;
+  font-size: 13px;
+  margin-top: 2px;
+}

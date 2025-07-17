@@ -100,7 +100,7 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
         label: "ASDC",
         icon: <FaCertificate />,
         submenu: [
-          { label: "Single", icon: "📄", onClick: () => alert("ASDC Single") },
+          { label: "Single", icon: "📄", onClick: () => navigate("/single/asdc") },
           { label: "Bulk", icon: "📁", onClick: () => alert("ASDC Bulk") },
         ],
       },
@@ -111,7 +111,7 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
           {
             label: "Single",
             icon: "📄",
-            onClick: () => alert("College Single"),
+            onClick: () => navigate("/single/college"),
           },
           { label: "Bulk", icon: "📁", onClick: () => alert("College Bulk") },
         ],
@@ -120,7 +120,7 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
         label: "Paid",
         icon: <FaMoneyBillWave />,
         submenu: [
-          { label: "Single", icon: "📄", onClick: () => alert("Paid Single") },
+          { label: "Single", icon: "📄", onClick: () => navigate("/single/paid") },
           { label: "Bulk", icon: "📁", onClick: () => alert("Paid Bulk") },
         ],
       },
@@ -130,7 +130,7 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
         label: "Short Term",
         icon: <FaClock />,
         submenu: [
-          { label: "Single", icon: "📄", onClick: () => alert("Short Single") },
+          { label: "Single", icon: "📄", onClick: () => navigate("/single/shortterm") },
           { label: "Bulk", icon: "📁", onClick: () => alert("Short Bulk") },
         ],
       },
@@ -140,7 +140,7 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
         label: "PGP",
         icon: <FaGraduationCap />,
         submenu: [
-          { label: "Single", icon: "📄", onClick: () => alert("PGP Single") },
+          { label: "Single", icon: "📄", onClick: () => navigate("/single/pgp") },
           { label: "Bulk", icon: "📁", onClick: () => alert("PGP Bulk") },
         ],
       },
@@ -148,7 +148,7 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
         label: "LOR",
         icon: <FaFileAlt />,
         submenu: [
-          { label: "Single", icon: "📄", onClick: () => alert("LOR Single") },
+          { label: "Single", icon: "📄", onClick: () => navigate("/single/lor")},
           { label: "Bulk", icon: "📁", onClick: () => alert("LOR Bulk") },
         ],
       },
@@ -159,7 +159,7 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
           {
             label: "Single",
             icon: "📄",
-            onClick: () => alert("Internship Single"),
+            onClick: () => navigate("/single/internship"),
           },
           {
             label: "Bulk",
@@ -175,7 +175,7 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
           {
             label: "Single",
             icon: "📄",
-            onClick: () => alert("Bonafide Single"),
+            onClick: () => navigate("/single/bonafied"),
           },
           { label: "Bulk", icon: "📁", onClick: () => alert("Bonafide Bulk") },
         ],
@@ -187,7 +187,7 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
           {
             label: "Single",
             icon: "📄",
-            onClick: () => alert("Clearance Single"),
+            onClick: () => navigate("/single/clearance"),
           },
           { label: "Bulk", icon: "📁", onClick: () => alert("Clearance Bulk") },
         ],

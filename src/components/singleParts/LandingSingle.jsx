@@ -1,10 +1,20 @@
-import styles from "./Single.module.css";
+import styles from "./LandingSingle.module.css";
 import { Button } from "../ui/Button";
 import { FiSettings, FiSave } from "react-icons/fi";
 // import PGPTemp from "../templates/PGP";
 import FreeCourceTemp from "../templates/FreeCoruseTemp";
 import FormComponent from "../FormComponent";
 import TextEditer from "../singleParts/textEditer";
+import AsdcTemp from "../templates/AsdcTemp";
+import PaidTemp from "../templates/PaidTemp";
+import Breadcrumbs from "../ui/Breadcrumbs";
+import ShortTermTemp from "../templates/ShortTerm";
+import CollegeTemp from "../templates/CollegeTemp";
+import PgpTemp from "../templates/PgpTemp";
+import LORTemp from "../templates/LOR";
+import InternshipTemp from "../templates/InternshipTemp";
+import BonafiedTemp from "../templates/BonafiedTemp";
+import ClearanceTemp from "../templates/ClearanceTemp";
 
 export default function LandingSingle({
   fieldConfigs,
@@ -63,34 +73,155 @@ export default function LandingSingle({
         />
       );
     }
-    // if (type === "pgp") {
-    //   return (
-    //     <PGPTemp
-    //       zoom={zoom}
-    //       position={position}
-    //       isDragging={isDragging}
-    //       activeCSS={cssEditorContent}
-    //       textContent={generateCertificateText()}
-    //       fontStyles={fontStyles}
-    //       textColor={textColor}
-    //       fontFamily={fontFamily}
-    //       certData={studentFormData}
-    //     />
-    //   );
-    // }
+    if (type === "asdc") {
+      return (
+        <AsdcTemp
+          zoom={zoom}
+          position={position}
+          isDragging={isDragging}
+          activeCSS={cssEditorContent}
+          textTemplate={text}
+          fontStyles={fontStyles}
+          textColor={textColor}
+          fontFamily={fontFamily}
+          certData={studentFormData}
+        />
+      );
+    }
+    if (type === "paid") {
+      return (
+        <PaidTemp
+          zoom={zoom}
+          position={position}
+          isDragging={isDragging}
+          activeCSS={cssEditorContent}
+          textTemplate={text}
+          fontStyles={fontStyles}
+          textColor={textColor}
+          fontFamily={fontFamily}
+          certData={studentFormData}
+        />
+      );
+    }
+    if (type === "college") {
+      return (
+        <CollegeTemp
+          zoom={zoom}
+          position={position}
+          isDragging={isDragging}
+          activeCSS={cssEditorContent}
+          textTemplate={text}
+          fontStyles={fontStyles}
+          textColor={textColor}
+          fontFamily={fontFamily}
+          certData={studentFormData}
+        />
+      );
+    }
+    if (type === "shortterm") {
+      return (
+        <ShortTermTemp
+          zoom={zoom}
+          position={position}
+          isDragging={isDragging}
+          activeCSS={cssEditorContent}
+          textTemplate={text}
+          fontStyles={fontStyles}
+          textColor={textColor}
+          fontFamily={fontFamily}
+          certData={studentFormData}
+        />
+      );
+    }
+    if (type === "pgp") {
+      return (
+        <PgpTemp
+          zoom={zoom}
+          position={position}
+          isDragging={isDragging}
+          activeCSS={cssEditorContent}
+          textTemplate={text}
+          fontStyles={fontStyles}
+          textColor={textColor}
+          fontFamily={fontFamily}
+          certData={studentFormData}
+        />
+      );
+    }
+    if (type === "lor") {
+      return (
+        <LORTemp
+          zoom={zoom}
+          position={position}
+          isDragging={isDragging}
+          activeCSS={cssEditorContent}
+          textTemplate={text}
+          fontStyles={fontStyles}
+          textColor={textColor}
+          fontFamily={fontFamily}
+          certData={studentFormData}
+        />
+      );
+    }
+    if (type === "internship") {
+      return (
+        <InternshipTemp
+          zoom={zoom}
+          position={position}
+          isDragging={isDragging}
+          activeCSS={cssEditorContent}
+          textTemplate={text}
+          fontStyles={fontStyles}
+          textColor={textColor}
+          fontFamily={fontFamily}
+          certData={studentFormData}
+        />
+      );
+    }
+    if (type === "bonafied") {
+      return (
+        <BonafiedTemp
+          zoom={zoom}
+          position={position}
+          isDragging={isDragging}
+          activeCSS={cssEditorContent}
+          textTemplate={text}
+          fontStyles={fontStyles}
+          textColor={textColor}
+          fontFamily={fontFamily}
+          certData={studentFormData}
+        />
+      );
+    }
+     if (type === "clearance") {
+      return (
+        <ClearanceTemp
+          zoom={zoom}
+          position={position}
+          isDragging={isDragging}
+          activeCSS={cssEditorContent}
+          textTemplate={text}
+          fontStyles={fontStyles}
+          textColor={textColor}
+          fontFamily={fontFamily}
+          certData={studentFormData}
+        />
+      );
+    }
     return null;
   };
 
   return (
     <div className={styles.singleCertificate}>
       <div className={styles.header}>
-        <div className={styles.breadcrumbs}>
+        {/* <div className={styles.breadcrumbs}>
           <span className={styles.breadcrumb}>Free</span>
           <span className={styles.separator}>&gt;</span>
           <span className={styles.breadcrumb}>Single</span>
           <span className={styles.separator}>&gt;</span>
           <span className={styles.activeBreadcrumb}>{type}</span>
-        </div>
+        </div> */}
+        <Breadcrumbs />
         <button className={styles.settingsButton} onClick={handleTempSetting}>
           <FiSettings size={18} />
         </button>

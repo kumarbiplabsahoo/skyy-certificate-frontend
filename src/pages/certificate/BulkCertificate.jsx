@@ -1,6 +1,6 @@
 import { useCertificateType } from "../../App";
 
-export default function Bulk() {
+export default function BulkCertificate() {
   const type = useCertificateType();
   return (
     <div>

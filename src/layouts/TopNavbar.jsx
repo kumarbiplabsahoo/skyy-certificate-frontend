@@ -18,8 +18,10 @@ import { FaBars } from "react-icons/fa";
 import profileImage from "../assets/images/profile.jpeg";
 import roundLogo from "../assets/icons/whiteicon.png";
 import { UseAuth } from "../hooks/useAuth";
+import { useSelector } from "react-redux";
 
 export default function TopNavbar({ children }) {
+  const { user } = useSelector((state) => state.auth);
   const { setlogout } = UseAuth();
   const [sideDrawToggle, setSideDrawToggle] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -51,7 +53,7 @@ export default function TopNavbar({ children }) {
   };
 
   const profile = {
-    email: "abbabai@gmail.com",
+    email: user?.email || "demo@gmail.com",
   };
 
   // toggle menu for profile icon
@@ -156,7 +158,7 @@ export default function TopNavbar({ children }) {
                     ? `${profile.email.slice(0, 15)}...`
                     : profile.email}
                 </h4>
-                <p>Admin</p>
+                <p>{user?.role || "Demo"}</p>
               </div>
             </div>
           </div>
