@@ -1,17 +1,16 @@
 import styles from "./TopFilter.module.css";
 import { FiSearch, FiDownload, FiCalendar, FiTrash2 } from "react-icons/fi";
 import { useState } from "react";
+import { UseDash } from "../../hooks/useDash";
 
 export default function TopFilter({
-  onSearch,
-  onDateFilter,
   onExportPDF,
   onExportXLSX,
   onExportCSV,
   onBulkDelete,
   selectedCount = 0,
-  isAllSelected,
 }) {
+  const { searchFilter, dateFilter, fetchAllCertificates } = UseDash();
   const [searchTerm, setSearchTerm] = useState("");
   const [dateRange, setDateRange] = useState({
     from: "",
@@ -20,7 +19,7 @@ export default function TopFilter({
 
   const handleSearch = (e) => {
     e.preventDefault();
-    onSearch(searchTerm);
+    searchFilter(searchTerm); // ✅ call directly
   };
 
   const handleDateChange = (e) => {
@@ -30,14 +29,20 @@ export default function TopFilter({
 
   const applyDateFilter = () => {
     if (dateRange.from && dateRange.to) {
-      onDateFilter(dateRange);
+      dateFilter(dateRange.from, dateRange.to);
     }
+  };
+
+  const clearFilters = () => {
+    setSearchTerm("");
+    setDateRange({ from: "", to: "" });
+    fetchAllCertificates(); // ✅ reset to full list
   };
 
   return (
     <div className={styles.filterContainer}>
       {/* Bulk Delete Button (left side) */}
-      {isAllSelected && (
+      {selectedCount > 0 && (
         <button
           onClick={onBulkDelete}
           className={styles.bulkDeleteButton}
@@ -93,6 +98,13 @@ export default function TopFilter({
             className={styles.dateApplyButton}
           >
             Apply
+          </button>
+          <button
+            type="button"
+            onClick={clearFilters}
+            className={styles.clearButton}
+          >
+            Clear
           </button>
         </div>
       </div>

@@ -1,10 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useCertificateType } from "../App";
+import { getCertTempByTempName, getSingleCertificateData } from "../api/certificateService";
+import { setTemplate } from "../store/tempSlice";
+import { useDispatch } from "react-redux";
+import { setSingleCertificate } from "../store/dashSlice";
+import { startInnerLoad, stopInnerLoad } from "../store/authSlice";
 
 export const SingleContext = createContext();
 
 export const SingleProvider = ({ children }) => {
-  const type = useCertificateType();
+  const dispatch = useDispatch();
+  const { type, id } = useCertificateType();
   const [zoom, setZoom] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -41,6 +47,53 @@ export const SingleProvider = ({ children }) => {
     setIsDragging(false);
   };
 
+  useEffect(() => {
+    const fetchTemplate = async () => {
+      if (type) {
+        const res = await getCertTempByTempName(type);
+        if (res?.success && res?.data) {
+          dispatch(setTemplate(res.data));
+        }
+      } else {
+        console.warn("No template type provided in the URL.");
+        // Optionally reset state or handle empty case
+        dispatch(
+          setTemplate({
+            tempName: "",
+            placeholders: [],
+            textFormat: "",
+            styleFormat: "",
+          })
+        );
+      }
+    };
+
+    fetchTemplate();
+  }, [type, dispatch]);
+
+  useEffect(() => {
+    const fetchCertificate = async () => {
+      if (id) {
+        dispatch(startInnerLoad());
+        try {
+          const response = await getSingleCertificateData(id);
+          const { data, message } = response;
+          if (response?.success) {
+            dispatch(setSingleCertificate(data));
+          } else {
+            console.error(message);
+          }
+        } catch (error) {
+          console.error("Failed to fetch certificate:", error);
+        } finally {
+          dispatch(stopInnerLoad());
+        }
+      }
+    };
+
+    fetchCertificate();
+  }, [id, dispatch]);
+
   return (
     <SingleContext.Provider
       value={{
@@ -57,7 +110,7 @@ export const SingleProvider = ({ children }) => {
         fontStyles,
         setFontStyles,
         textColor,
-        setTextColor
+        setTextColor,
       }}
     >
       {children}

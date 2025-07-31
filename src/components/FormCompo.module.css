@@ -21,22 +21,24 @@
 .label {
   font-weight: 500;
   font-size: 0.875rem;
-  color: #374151;
+  color: var(--text-color);
 }
 
 .required {
-  color: #ef4444;
+  color: #f87171;
 }
 
 .input,
 .select,
 .textarea {
   padding: 0.75rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--box-border);
   border-radius: 0.375rem;
   font-size: 0.875rem;
   width: 100%;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .textarea {
@@ -53,7 +55,7 @@
 }
 
 .error {
-  color: #ef4444;
+  color: #f87171;
   font-size: 0.875rem;
   text-align: center;
   margin: 1rem 0;
@@ -91,5 +93,5 @@
 .fileName {
   margin-top: 0.5rem;
   font-size: 0.75rem;
-  color: #4b5563;
+  color: var(--text-color);
 }

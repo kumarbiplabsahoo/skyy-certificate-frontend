@@ -8,69 +8,32 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { UseDash } from "../../hooks/useDash";
 import InlineLoader from "../../components/ui/InlineLoader";
-
-const coreHrData = [
-  {
-    _id: "1",
-    certificateType: "Course Completion",
-    email: "john.doe@example.com",
-    studentName: "John Doe",
-    duration: "3 Months",
-    course: "Web Development",
-    date: "2023-05-15",
-  },
-  {
-    _id: "2",
-    certificateType: "Workshop Participation",
-    email: "jane.smith@example.com",
-    studentName: "Jane Smith",
-    duration: "2 Days",
-    course: "UI/UX Design",
-    date: "2023-06-20",
-  },
-  {
-    _id: "3",
-    certificateType: "Professional Certification",
-    email: "robert.johnson@example.com",
-    studentName: "Robert Johnson",
-    duration: "6 Months",
-    course: "Data Science",
-    date: "2023-04-10",
-  },
-  {
-    _id: "4",
-    certificateType: "Internship Completion",
-    email: "emily.wilson@example.com",
-    studentName: "Emily Wilson",
-    duration: "4 Months",
-    course: "Digital Marketing",
-    date: "2023-07-05",
-  },
-  {
-    _id: "5",
-    certificateType: "Course Completion",
-    email: "michael.brown@example.com",
-    studentName: "Michael Brown",
-    duration: "3 Months",
-    course: "Mobile App Development",
-    date: "2023-08-12",
-  },
-];
+import { useNavigate } from "react-router-dom";
+import { exportToPDF } from "../../utils/ExportPDF";
+import { exportToExcel } from "../../utils/ExportExcel";
+import { exportToCSV } from "../../utils/ExportCSV";
+import Modal from "../../components/ui/Modal";
 
 export default function Dashboard() {
-  const { certificates } = useSelector((state) => state.dash);
-  const { loading } = useSelector((state) => state.dash);
+  const { certificates, allcertificates } = useSelector((state) => state.dash);
+  const { innerloading } = useSelector((state) => state.auth);
   const {
     totalPages,
     totalRecords,
     currentPage,
     recordsPerPage,
     setCurrentPage,
+    getAllGenCert,
+    deleteSingleCertificate,
+    deleteBulkCertificates,
     // setRecordsPerPage,
   } = UseDash();
+  const navigate = useNavigate();
 
+  const [deleteId, setDeleteId] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
   const [isAllSelected, setIsAllSelected] = useState(false);
+  const [isDeleteModal, setDeleteModal] = useState(false);
 
   const handleSelect = (id) => {
     setSelectedItems((prev) =>
@@ -79,36 +42,105 @@ export default function Dashboard() {
   };
 
   const handleSelectAll = () => {
+    const currentPageIds = certificates.map((item) => item._id);
     if (isAllSelected) {
-      setSelectedItems([]);
+      setSelectedItems((prev) =>
+        prev.filter((id) => !currentPageIds.includes(id))
+      );
     } else {
-      setSelectedItems(coreHrData.map((item) => item._id));
+      setSelectedItems((prev) => [...new Set([...prev, ...currentPageIds])]);
     }
     setIsAllSelected(!isAllSelected);
   };
 
-  const handleBulkDelete = () => {
-    // Your delete logic here
-    console.log("Deleting items:", selectedItems);
+  const handleBulkDelete = async () => {
+    if (selectedItems.length === 0) return;
+    await deleteBulkCertificates(selectedItems);
     setSelectedItems([]);
     setIsAllSelected(false);
+    setDeleteModal(false);
   };
 
+  const excludedFields = [
+    "_id",
+    "createdAt",
+    "updatedAt",
+    "__v",
+    "CollegeImage",
+    "Signature1",
+    "Signature2",
+    "Signature3",
+    "Signature4",
+    "textFormat",
+    "styleFormat",
+    "placeholders",
+    "otp",
+    "Mng_Designation1",
+    "Mng_Desg_Add1",
+    "Mng_Designation2",
+    "Mng_Desg_Add2",
+    "Mng_Designation3",
+    "Mng_Desg_Add3",
+    "Mng_Designation4",
+    "Mng_Desg_Add4",
+    "Titels",
+    "Saluation_1",
+    "Saluation_2",
+    "Saluation_3",
+    "Student_Designation",
+    "StudentValidate",
+    "CourseType",
+    "Mode",
+  ];
+
+  const handleDeleteSingleDelete = (id) => {
+    setDeleteId(id);
+    setDeleteModal(true);
+  };
+
+  const confirmSingleDelete = async () => {
+    if (deleteId) {
+      await deleteSingleCertificate(deleteId);
+      setDeleteId(null);
+      setDeleteModal(false);
+    }
+  };
+
+  const handleDownload = async (type = "pdf", useAll = false) => {
+    let dataToExport = certificates;
+
+    if (useAll) {
+      if (!allcertificates || allcertificates.length === 0) {
+        await getAllGenCert(); // 🔁 This will store into redux
+      }
+      dataToExport = allcertificates;
+    }
+
+    switch (type) {
+      case "pdf":
+        exportToPDF(dataToExport, "certificates", excludedFields);
+        break;
+      case "xlsx":
+        exportToExcel(dataToExport, "certificates", excludedFields);
+        break;
+      case "csv":
+        exportToCSV(dataToExport, "certificates", excludedFields);
+        break;
+      default:
+        return null;
+    }
+  };
   return (
     <div className={styles.container}>
       <TopFilter
-        onSearch={(term) => console.log("Search:", term)}
-        onDateFilter={(range) => console.log("Date range:", range)}
-        onExportPDF={() => console.log("Export PDF")}
-        onExportXLSX={() => console.log("Export Excel")}
-        onExportCSV={() => console.log("Export CSV")}
-        // ... other props
-        onBulkDelete={handleBulkDelete}
+        onExportPDF={() => handleDownload("pdf", true)} // Download all as PDF
+        onExportXLSX={() => handleDownload("xlsx", true)} // Download all as Excel
+        onExportCSV={() => handleDownload("csv", true)} // Download all as CSV
+        onBulkDelete={() => setDeleteModal(true)} // Trigger modal for bulk delete
         selectedCount={selectedItems.length}
-        isAllSelected={isAllSelected}
       />
 
-      {loading ? (
+      {innerloading ? (
         <InlineLoader />
       ) : (
         <>
@@ -122,6 +154,10 @@ export default function Dashboard() {
                       type="checkbox"
                       onChange={handleSelectAll}
                       className={styles.checkbox}
+                      checked={
+                        certificates.length > 0 &&
+                        certificates.every((c) => selectedItems.includes(c._id))
+                      }
                     />
                   </Th>
                   <Th>Sl.No</Th>
@@ -166,10 +202,14 @@ export default function Dashboard() {
                           <Button
                             variant="info"
                             icon={<FiEdit className={styles.icon} />}
+                            onClick={() => navigate(`/edit/${certificate._id}`)}
                           />
                           <Button
                             variant="danger"
                             icon={<FiTrash className={styles.icon} />}
+                            onClick={() =>
+                              handleDeleteSingleDelete(certificate._id)
+                            }
                           />
                         </div>
                       </Td>
@@ -196,6 +236,41 @@ export default function Dashboard() {
           {/* Pagination */}
         </>
       )}
+      <Modal
+        isOpen={isDeleteModal}
+        onClose={() => {
+          setDeleteModal(false);
+          setDeleteId(null);
+        }}
+        title={"Delete Certificate"}
+      >
+        <div className={styles.modalContent}>
+          <p className={styles.modalMessage}>
+            {deleteId
+              ? "Are you sure you want to delete this certificate?"
+              : "Are you sure you want to delete the selected certificates?"}
+            <br />
+            This action cannot be undone.
+          </p>
+          <div className={styles.modalActions}>
+            <Button
+              variant="primary"
+              onClick={() => {
+                setDeleteModal(false);
+                setDeleteId(null);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="danger"
+              onClick={deleteId ? confirmSingleDelete : handleBulkDelete}
+            >
+              Delete
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }

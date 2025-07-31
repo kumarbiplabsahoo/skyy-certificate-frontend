@@ -11,10 +11,9 @@ export default function TextEditer({
   textColor,
   setTextColor,
   placeholders,
-  generateCertificateText,
- 
+  generatedText,
 }) {
-  const { isEditing, setIsEditing } = UseSingle();
+  const { isEditing, setIsEditing, UpdateTextTemp } = UseSingle();
   const [selection, setSelection] = useState({ start: 0, end: 0 });
 
   // Handle text selection changes
@@ -156,7 +155,12 @@ export default function TextEditer({
         </div>
         <div className={styles.controls}>
           <button
-            onClick={() => setIsEditing((prev) => !prev)}
+            onClick={() => {
+              if (isEditing) {
+                UpdateTextTemp(text); // Save the content when editing is finished
+              }
+              setIsEditing((prev) => !prev);
+            }}
             className={styles.toggleButton}
           >
             {isEditing ? (
@@ -190,7 +194,7 @@ export default function TextEditer({
 
       <textarea
         className={styles.textInput}
-        value={isEditing ? text : generateCertificateText()}
+        value={isEditing ? text : generatedText}
         onChange={(e) => setText(e.target.value)}
         disabled={!isEditing}
         onSelect={handleTextSelection}

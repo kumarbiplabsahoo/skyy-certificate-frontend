@@ -6,14 +6,15 @@
 }
 
 .breadcrumb {
-  color: #888;
+  color: var(--table-td-text); /* Subtle text in both modes */
 }
 
 .activeBreadcrumb {
-  color: #000;
+  color: var(--text-color);  /* Primary text color */
   font-weight: bold;
 }
 
 .separator {
   margin: 0 5px;
+  color: var(--table-td-text); /* Neutral separator color */
 }

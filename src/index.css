@@ -15,6 +15,13 @@
   --table-tr-odd-bg: #ffffff;
   --table-td-text: #555;
   --table-border: #ddd;
+
+  --clear-bg: #f4f4f5;           /* light gray */
+  --clear-text: #374151;         /* slate-700 */
+  --clear-border: #d1d5db;       /* gray-300 */
+  --clear-bg-hover: #e5e7eb;     /* gray-200 */
+  --clear-text-hover: #111827;   /* gray-900 */
+  --clear-border-hover: #9ca3af; /* gray-400 */
   /* Add other light mode variables */
 }
 
@@ -25,13 +32,20 @@
   --navbar-bg: #2d2d2d;
   --navbar-text-color: #ffffff;
   --box-shadow: rgba(244, 239, 239, 0.421);
- --box-border: #2d3748;
- 
+  --box-border: #2d3748;
+
   --table-head-bg: #2d2d2d;
   --table-tr-even-bg: #2d2d2d;
   --table-tr-odd-bg: #1a1a1a;
   --table-td-text: #e0e0e0;
   --table-border: #757583;
+
+  --clear-bg: #2d2d2d;
+  --clear-text: #d1d5db;         /* light gray */
+  --clear-border: #4b5563;       /* gray-600 */
+  --clear-bg-hover: #3a3a3a;
+  --clear-text-hover: #ffffff;
+  --clear-border-hover: #6b7280;
   /* Add other dark mode variables */
 }
 

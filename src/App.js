@@ -19,6 +19,7 @@ import SingleCertficate from "./pages/certificate/SingleCertficate";
 
 const Login = lazy(() => import("./pages/auth/Login"));
 const Dashboard = lazy(() => import("./pages/main/Index"));
+const EditCert = lazy(() => import("./pages/certificate/EditCert"));
 
 function App() {
   return (
@@ -73,7 +74,9 @@ function App() {
               element={
                 <Suspense fallback={<MainLoader />}>
                   <TopNavbar>
-                    <BulkCertificate />
+                    <SingleProvider>
+                      <BulkCertificate />
+                    </SingleProvider>
                   </TopNavbar>
                 </Suspense>
               }
@@ -86,7 +89,9 @@ function App() {
               element={
                 <Suspense fallback={<MainLoader />}>
                   <TopNavbar>
-                    <Dashboard />
+                    <SingleProvider>
+                      <EditCert />
+                    </SingleProvider>
                   </TopNavbar>
                 </Suspense>
               }
@@ -105,6 +110,6 @@ export default App;
 
 // Hook to access route parameters
 export function useCertificateType() {
-  const { type } = useParams();
-  return type;
+  const { type, id } = useParams();
+  return { type, id };
 }

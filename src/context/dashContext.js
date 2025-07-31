@@ -7,7 +7,8 @@ import {
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCertificates } from "../api/dashService";
-import { setCerificates, startloading, stoploading } from "../store/dashSlice";
+import { setCerificates } from "../store/dashSlice";
+import { startInnerLoad, stopInnerLoad } from "../store/authSlice";
 
 export const DashContext = createContext();
 
@@ -18,8 +19,8 @@ export const DashProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage, setRecordsPerPage] = useState(10);
 
-  const fetchAllBatches = useCallback(async () => {
-    dispatch(startloading());
+  const fetchAllCertificates = useCallback(async () => {
+    dispatch(startInnerLoad());
     try {
       const response = await getAllCertificates(currentPage, recordsPerPage);
       const { data, message } = response;
@@ -33,14 +34,14 @@ export const DashProvider = ({ children }) => {
     } catch (err) {
       console.error("batches data couldn't get", err);
     } finally {
-      dispatch(stoploading());
+      dispatch(stopInnerLoad());
     }
   }, [currentPage, recordsPerPage, dispatch]);
 
   // Fetch data when currentPage or recordsPerPage changes
   useEffect(() => {
-    fetchAllBatches();
-  }, [currentPage, recordsPerPage, fetchAllBatches]);
+    fetchAllCertificates();
+  }, [currentPage, recordsPerPage, fetchAllCertificates]);
 
   const totalPages = Math.ceil(totalRecords / recordsPerPage);
 
@@ -49,11 +50,12 @@ export const DashProvider = ({ children }) => {
       certificates,
       totalPages,
       totalRecords,
+      setTotalRecords,
       currentPage,
       recordsPerPage,
       setCurrentPage,
       setRecordsPerPage,
-      fetchAllBatches,
+      fetchAllCertificates,
     }),
     [
       certificates,
@@ -61,7 +63,7 @@ export const DashProvider = ({ children }) => {
       totalRecords,
       currentPage,
       recordsPerPage,
-      fetchAllBatches,
+      fetchAllCertificates,
     ]
   );
 

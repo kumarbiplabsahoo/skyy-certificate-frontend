@@ -3,25 +3,24 @@ import { createSlice } from "@reduxjs/toolkit";
 export const dashSlice = createSlice({
   name: "dash",
   initialState: {
+    allcertificates: [],
     certificates: [],
-    loading: false,
-    error: null,
+    single_cert: null,
   },
   reducers: {
-    startloading(state) {
-      console.log('Reducer: startloading triggered');
-      state.loading = true;
+    setAllCerificates(state, action) {
+      state.allcertificates = action.payload;
     },
     setCerificates(state, action) {
       state.certificates = action.payload;
     },
-    stoploading(state) {
-      console.log('Reducer: stop triggered');
-      state.loading = false;
+    setSingleCertificate(state, action) {
+      state.single_cert = action.payload;
     },
   },
 });
 
-export const { startloading, stoploading, setCerificates } = dashSlice.actions;
+export const { setAllCerificates, setCerificates, setSingleCertificate } =
+  dashSlice.actions;
 
 export default dashSlice.reducer;

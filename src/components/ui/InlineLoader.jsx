@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import styles from "../../assets/styles/ui/InlineLoader.module.css";
 
 const InlineLoader = () => {
-  const { loading } = useSelector((state) => state.dash); // Ensure correct key
+  const { innerloading } = useSelector((state) => state.auth); // Ensure correct key
   
-  return loading ? (
+  return innerloading ? (
     <div className={styles.inlineLoaderContainer}>
       <div className={styles.inlineLoader}></div>
     </div>

@@ -7,18 +7,26 @@ export const authSlice = createSlice({
     user: null,
     token: Cookies.get("token") || null,
     isAuthenticated: !!Cookies.get("token"),
-    loading: false,
+    innerloading: false,
+    mainloading: false,
     error: null,
   },
   reducers: {
-    loginStart(state) {
-      state.loading = true;
-      state.error = null;
+    //loading part start
+    startInnerLoad(state) {
+      state.innerloading = true;
     },
-    loginStop(state) {
-      state.loading = false;
-      state.error = null;
+    stopInnerLoad(state) {
+      state.innerloading = false;
     },
+    //loading part start
+    startMainLoad(state) {
+      state.mainloading = true;
+    },
+    stopMainLoad(state) {
+      state.mainloading = false;
+    },
+    //loading part end
     loginSuccess(state, action) {
       state.user = action.payload.admin;
       state.token = action.payload.token;
@@ -46,7 +54,14 @@ export const authSlice = createSlice({
   },
 });
 
-export const { loginStart, loginStop, loginSuccess, loginFailure, logout } =
-  authSlice.actions;
+export const {
+  startInnerLoad,
+  stopInnerLoad,
+  startMainLoad,
+  stopMainLoad,
+  loginSuccess,
+  loginFailure,
+  logout,
+} = authSlice.actions;
 
 export default authSlice.reducer;

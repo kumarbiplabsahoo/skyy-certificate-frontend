@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/authContext";
 import { authLogin } from "../api/authService";
 import { useDispatch } from "react-redux";
-import { loginStart, loginStop, loginFailure } from "../store/authSlice";
+import { loginFailure, startMainLoad, stopMainLoad } from "../store/authSlice";
 
 export const UseAuth = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export const UseAuth = () => {
   });
 
   const loginAdmin = async () => {
-    dispatch(loginStart());
+    dispatch(startMainLoad());
     try {
       const loginresponse = await authLogin(loginData);
 
@@ -26,7 +26,7 @@ export const UseAuth = () => {
     } catch (error) {
       dispatch(loginFailure(error.message));
     } finally {
-      dispatch(loginStop());
+      dispatch(stopMainLoad());
     }
   };
 

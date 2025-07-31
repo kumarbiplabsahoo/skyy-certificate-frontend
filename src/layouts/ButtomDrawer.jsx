@@ -100,8 +100,12 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
         label: "ASDC",
         icon: <FaCertificate />,
         submenu: [
-          { label: "Single", icon: "📄", onClick: () => navigate("/single/asdc") },
-          { label: "Bulk", icon: "📁", onClick: () => alert("ASDC Bulk") },
+          {
+            label: "Single",
+            icon: "📄",
+            onClick: () => navigate("/single/asdc"),
+          },
+          { label: "Bulk", icon: "📁", onClick: () => navigate("/bulk/asdc") },
         ],
       },
       {
@@ -113,15 +117,23 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
             icon: "📄",
             onClick: () => navigate("/single/college"),
           },
-          { label: "Bulk", icon: "📁", onClick: () => alert("College Bulk") },
+          {
+            label: "Bulk",
+            icon: "📁",
+            onClick: () => navigate("/bulk/college"),
+          },
         ],
       },
       {
         label: "Paid",
         icon: <FaMoneyBillWave />,
         submenu: [
-          { label: "Single", icon: "📄", onClick: () => navigate("/single/paid") },
-          { label: "Bulk", icon: "📁", onClick: () => alert("Paid Bulk") },
+          {
+            label: "Single",
+            icon: "📄",
+            onClick: () => navigate("/single/paid"),
+          },
+          { label: "Bulk", icon: "📁", onClick: () => navigate("/bulk/paid") },
         ],
       },
     ],
@@ -130,8 +142,16 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
         label: "Short Term",
         icon: <FaClock />,
         submenu: [
-          { label: "Single", icon: "📄", onClick: () => navigate("/single/shortterm") },
-          { label: "Bulk", icon: "📁", onClick: () => alert("Short Bulk") },
+          {
+            label: "Single",
+            icon: "📄",
+            onClick: () => navigate("/single/shortterm"),
+          },
+          {
+            label: "Bulk",
+            icon: "📁",
+            onClick: () => navigate("/bulk/shortterm"),
+          },
         ],
       },
     ],
@@ -140,16 +160,24 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
         label: "PGP",
         icon: <FaGraduationCap />,
         submenu: [
-          { label: "Single", icon: "📄", onClick: () => navigate("/single/pgp") },
-          { label: "Bulk", icon: "📁", onClick: () => alert("PGP Bulk") },
+          {
+            label: "Single",
+            icon: "📄",
+            onClick: () => navigate("/single/pgp"),
+          },
+          { label: "Bulk", icon: "📁", onClick: () => navigate("/bulk/pgp") },
         ],
       },
       {
         label: "LOR",
         icon: <FaFileAlt />,
         submenu: [
-          { label: "Single", icon: "📄", onClick: () => navigate("/single/lor")},
-          { label: "Bulk", icon: "📁", onClick: () => alert("LOR Bulk") },
+          {
+            label: "Single",
+            icon: "📄",
+            onClick: () => navigate("/single/lor"),
+          },
+          { label: "Bulk", icon: "📁", onClick: () => navigate("/bulk/lor") },
         ],
       },
       {
@@ -164,7 +192,7 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
           {
             label: "Bulk",
             icon: "📁",
-            onClick: () => alert("Internship Bulk"),
+            onClick: () => navigate("/bulk/internship"),
           },
         ],
       },
@@ -177,7 +205,11 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
             icon: "📄",
             onClick: () => navigate("/single/bonafied"),
           },
-          { label: "Bulk", icon: "📁", onClick: () => alert("Bonafide Bulk") },
+          {
+            label: "Bulk",
+            icon: "📁",
+            onClick: () => navigate("/bulk/bonafied"),
+          },
         ],
       },
       {
@@ -189,7 +221,11 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
             icon: "📄",
             onClick: () => navigate("/single/clearance"),
           },
-          { label: "Bulk", icon: "📁", onClick: () => alert("Clearance Bulk") },
+          {
+            label: "Bulk",
+            icon: "📁",
+            onClick: () => navigate("/bulk/clearance"),
+          },
         ],
       },
     ],
