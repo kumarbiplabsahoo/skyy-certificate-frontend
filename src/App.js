@@ -5,7 +5,6 @@ import {
   Route,
   Routes,
   Navigate,
-  useParams,
 } from "react-router-dom";
 import MainLoader from "./components/ui/Loader";
 import TopNavbar from "./layouts/TopNavbar";
@@ -16,6 +15,7 @@ import AuthLoader from "./components/AuthLoader";
 import BulkCertificate from "./pages/certificate/BulkCertificate";
 import { SingleProvider } from "./context/singleContext";
 import SingleCertficate from "./pages/certificate/SingleCertficate";
+import RouteTypeWrapper from "./RouteTypeWrapper";
 
 const Login = lazy(() => import("./pages/auth/Login"));
 const Dashboard = lazy(() => import("./pages/main/Index"));
@@ -57,13 +57,15 @@ function App() {
             <Route
               path="/single/:type"
               element={
-                <Suspense fallback={<MainLoader />}>
-                  <TopNavbar>
-                    <SingleProvider>
-                      <SingleCertficate />
-                    </SingleProvider>
-                  </TopNavbar>
-                </Suspense>
+                <TopNavbar>
+                  <RouteTypeWrapper>
+                    {(type) => (
+                      <SingleProvider initialType={type}>
+                        <SingleCertficate />
+                      </SingleProvider>
+                    )}
+                  </RouteTypeWrapper>
+                </TopNavbar>
               }
             />
           </Route>
@@ -72,13 +74,15 @@ function App() {
             <Route
               path="/bulk/:type"
               element={
-                <Suspense fallback={<MainLoader />}>
-                  <TopNavbar>
-                    <SingleProvider>
-                      <BulkCertificate />
-                    </SingleProvider>
-                  </TopNavbar>
-                </Suspense>
+                <TopNavbar>
+                  <RouteTypeWrapper>
+                    {(type) => (
+                      <SingleProvider initialType={type}>
+                        <BulkCertificate />
+                      </SingleProvider>
+                    )}
+                  </RouteTypeWrapper>
+                </TopNavbar>
               }
             />
           </Route>
@@ -87,13 +91,11 @@ function App() {
             <Route
               path="/edit/:id?"
               element={
-                <Suspense fallback={<MainLoader />}>
-                  <TopNavbar>
-                    <SingleProvider>
-                      <EditCert />
-                    </SingleProvider>
-                  </TopNavbar>
-                </Suspense>
+                <TopNavbar>
+                  <SingleProvider>
+                    <EditCert />
+                  </SingleProvider>
+                </TopNavbar>
               }
             />
           </Route>
@@ -108,8 +110,8 @@ function App() {
 
 export default App;
 
-// Hook to access route parameters
-export function useCertificateType() {
-  const { type, id } = useParams();
-  return { type, id };
-}
+// // Hook to access route parameters
+// export function useCertificateType() {
+//   const { type, id } = useParams();
+//   return { type, id };
+// }

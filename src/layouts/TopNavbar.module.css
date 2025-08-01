@@ -3,7 +3,6 @@
   background-color: var(--navbar-bg);
   color: var(--navbar-color);
   max-width: 100vw;
-  height: 70px;
 }
 
 .navbar {
@@ -12,7 +11,7 @@
   align-items: center;
   width: 89.7%;
   margin: 0 auto;
-  height: 70px;
+  height: 55px;
   /* padding: 0 1.2rem 0 0; */
   color: var(--navbar-text-color);
   flex-wrap: nowrap;
@@ -21,14 +20,14 @@
   display: none;
 }
 .roundLogo {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
 }
 .logo {
   font-weight: bold;
-  font-size: 1.3vw;
+  font-size: 1vw;
 }
 .left {
   display: flex;
@@ -159,13 +158,12 @@
   .logo {
     font-size: 7.5px;
   }
-    .roundLogo {
-  width: 30px;
-  height: 30px;
-  /* border-radius: 50%;
+  .roundLogo {
+    width: 30px;
+    height: 30px;
+    /* border-radius: 50%;
   object-fit: cover; */
-}
-  
+  }
 
   .icon {
     font-size: 13px;

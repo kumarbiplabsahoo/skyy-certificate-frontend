@@ -16,14 +16,13 @@
 
 /* Table Wrapper */
 .tableContainer {
-  margin-top: 1.25rem;
   background: white;
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   max-width: 100vw;
   overflow-x: auto;
   display: block;
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 /* Action Buttons Container */

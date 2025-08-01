@@ -54,6 +54,11 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
+/* Style native date icon for dark mode */
+.input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: var(--calendar-icon-filter);
+}
+
 .error {
   color: #f87171;
   font-size: 0.875rem;

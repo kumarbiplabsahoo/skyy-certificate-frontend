@@ -8,6 +8,7 @@ const FormComponent = ({
   ButtonTitle = "Submit",
   error,
   handleSubmit,
+  handleFileUpload
 }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -33,14 +34,6 @@ const FormComponent = ({
       };
       reader.readAsDataURL(file);
     }
-  };
-
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: files[0], // Store the file object
-    }));
   };
 
   // Clean up object URLs when component unmounts
@@ -147,7 +140,7 @@ const FormComponent = ({
                     className={styles.fileInput}
                     name={element.name}
                     accept={element.accept}
-                    onChange={handleFileChange}
+                    onChange={handleFileUpload}
                   />
                   {formData[element.name] && (
                     <div className={styles.fileName}>

@@ -20,6 +20,31 @@ export const createNewSingleCert = async (certdata) => {
   }
 };
 
+export const updateOldSingleCert = async (certdata) => {
+  try {
+    const token = Cookies.get("token");
+
+    if (!certdata._id) {
+      throw new Error("Certificate ID (_id) is required for update.");
+    }
+
+    const response = await fetchData(`update_certificate/${certdata._id}`, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(certdata),
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Error updating certificate:", error);
+    return { success: false, message: error.message };
+  }
+};
+
 export const sendMailWithCertificate = async (certdata) => {
   try {
     const token = Cookies.get("token");

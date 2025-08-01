@@ -13,7 +13,7 @@ const FreeCourceTemp = forwardRef(
       certData,
       textTemplate,
     },
-    certificateRef // forwarded ref
+    ref
   ) => {
     const containerRef = useRef(null);
     const overlayRef = useRef(null);
@@ -76,7 +76,7 @@ const FreeCourceTemp = forwardRef(
             position: "relative",
           }}
         >
-          <div ref={certificateRef}>
+          <div ref={ref}>
             <img
               src={CertImage}
               alt="Certificate Background"

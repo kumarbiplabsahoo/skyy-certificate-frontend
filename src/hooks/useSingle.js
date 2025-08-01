@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { startInnerLoad, stopInnerLoad } from "../store/authSlice";
 import {
   createNewSingleCert,
+  updateOldSingleCert,
   updateStyleCertificateTemp,
   updateTextCertificateTemp,
 } from "../api/certificateService";
@@ -11,8 +12,26 @@ import { setTemplate } from "../store/tempSlice";
 
 export const UseSingle = () => {
   const { defaultText, css } = useSelector((state) => state.temp);
+  const context = useContext(SingleContext);
+  if (!context) {
+    throw new Error("UseSingle must be used within a <SingleProvider>");
+  }
   const dispatch = useDispatch();
   const {
+    studentCertificates,
+    setStudentCertificates,
+    studentFormData,
+    setStudentFormData,
+    certificateRef,
+    currentProgress,
+    resolveCapture,
+    setResolveCapture,
+    isRendering,
+    setIsRendering,
+    progressModal,
+    setProgressModal,
+    progress,
+    setProgress,
     type,
     zoom,
     position,
@@ -29,7 +48,7 @@ export const UseSingle = () => {
     setFontStyles,
     textColor,
     setTextColor,
-  } = useContext(SingleContext);
+  } = context;
   const [text, setText] = useState("");
   const [cssEditorContent, setCssEditorContent] = useState(``);
 
@@ -67,7 +86,23 @@ export const UseSingle = () => {
     dispatch(startInnerLoad());
     try {
       const response = await createNewSingleCert(certdate);
-      console.log("📦 API Response:", response);
+      const { data, message } = response;
+      if (response?.success) {
+        return data;
+      } else {
+        console.error("❌ API returned failure:", message);
+      }
+    } catch (error) {
+      console.error("💥 Error in CreateNewCertificate:", error);
+    } finally {
+      dispatch(stopInnerLoad());
+    }
+  };
+
+  const UpdateOldCertificate = async (certdate) => {
+    dispatch(startInnerLoad());
+    try {
+      const response = await updateOldSingleCert(certdate);
       const { data, message } = response;
       if (response?.success) {
         return data;
@@ -124,6 +159,20 @@ export const UseSingle = () => {
   };
 
   return {
+    studentCertificates,
+    setStudentCertificates,
+    studentFormData,
+    setStudentFormData,
+    certificateRef,
+    currentProgress,
+    resolveCapture,
+    setResolveCapture,
+    isRendering,
+    setIsRendering,
+    progressModal,
+    setProgressModal,
+    progress,
+    setProgress,
     text,
     setText,
     cssEditorContent,
@@ -149,6 +198,7 @@ export const UseSingle = () => {
     tempSetting,
     handleTempSetting,
     CreateNewCertificate,
+    UpdateOldCertificate,
     UpdateTextTemp,
     UpdateStyleTemp,
   };

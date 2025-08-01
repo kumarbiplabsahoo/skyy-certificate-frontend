@@ -132,7 +132,7 @@ export default function TopNavbar({ children }) {
             </div>
             <div className={styles.logo}>SKYYSKILL ACADEMY</div>
           </div>
-          <div className={styles.logo}>LMS</div>
+          <div className={styles.logo}>CERTIFICATION</div>
 
           <div className={styles.right}>
             <div className={styles.iconBox} onClick={toggleFullscreen}>
