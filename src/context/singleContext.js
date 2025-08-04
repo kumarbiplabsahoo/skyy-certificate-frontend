@@ -11,12 +11,13 @@ import { useLocation, useParams } from "react-router-dom";
 
 export const SingleContext = createContext();
 
-export const SingleProvider = ({ children, initialType = "" }) => {
+export const SingleProvider = ({ children }) => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { id } = useParams(); // ✅ only use id from params
-  const isEditRoute = location.pathname.startsWith("/edit");
-  const [type, setType] = useState(initialType);
+  const { type: routeType, id } = useParams();
+  const isEditMode = location.pathname.startsWith("/edit");
+
+  const [type, setType] = useState("");
 
   const [zoom, setZoom] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -70,7 +71,6 @@ export const SingleProvider = ({ children, initialType = "" }) => {
     Signature4: "",
     recipientEmail: "",
   });
-
   const [fontFamily, setFontFamily] = useState("Arial");
   const [fontStyles, setFontStyles] = useState({
     bold: false,
@@ -101,57 +101,60 @@ export const SingleProvider = ({ children, initialType = "" }) => {
     setIsDragging(false);
   };
 
-  // Fetch template for /single/:type and /bulk/:type
   useEffect(() => {
-    const fetchTemplate = async () => {
-      if (!type) {
-        // Skip fetching if type is not ready (common in /edit/:id initially)
-        return;
-      }
-
-      try {
-        const res = await getCertTempByTempName(type);
-        if (res?.success && res?.data) {
-          dispatch(setTemplate(res.data));
-        } else {
-          console.warn("Template fetch failed or returned empty.");
-        }
-      } catch (error) {
-        console.error("Error fetching certificate template:", error);
-      }
-    };
-
-    fetchTemplate();
-  }, [type, dispatch]);
-
-  // Fetch certificate for /edit/:id
-  useEffect(() => {
-    const fetchCertificate = async () => {
-      if (isEditRoute && id) {
+    const fetchData = async () => {
+      if (isEditMode && id) {
+        // Edit Mode: Fetch certificate and derive template
         dispatch(startInnerLoad());
         try {
           const response = await getSingleCertificateData(id);
-          const { data } = response;
+          const data = response?.data;
 
-          if (response?.success) {
+          if (response.success && data) {
             dispatch(setSingleCertificate(data));
+            setStudentFormData(data);
+
             const parsedType = data?.CertTemplate?.toLowerCase()
               ?.replace("course", "")
               ?.trim();
-            if (parsedType) setType(parsedType);
+
+            if (parsedType) {
+              setType(parsedType);
+              const templateRes = await getCertTempByTempName(parsedType);
+              if (templateRes?.success && templateRes?.data) {
+                dispatch(setTemplate(templateRes.data));
+              } else {
+                console.warn("No template found for parsed type:", parsedType);
+              }
+            } else {
+              console.warn("Parsed type from CertTemplate is empty.");
+            }
           } else {
-            console.error(response?.message);
+            console.error("Failed to fetch certificate:", response?.message);
           }
-        } catch (error) {
-          console.error("Failed to fetch certificate:", error);
+        } catch (err) {
+          console.error("Error in edit mode fetch:", err);
         } finally {
           dispatch(stopInnerLoad());
+        }
+      } else if (routeType) {
+        // Single or Bulk mode: fetch by routeType
+        setType(routeType);
+        try {
+          const res = await getCertTempByTempName(routeType);
+          if (res?.success && res?.data) {
+            dispatch(setTemplate(res.data));
+          } else {
+            console.warn("No template found for route type:", routeType);
+          }
+        } catch (err) {
+          console.error("Error fetching template for type:", routeType, err);
         }
       }
     };
 
-    fetchCertificate();
-  }, [id, isEditRoute, dispatch]);
+    fetchData();
+  }, [routeType, id, isEditMode, dispatch]);
 
   return (
     <SingleContext.Provider

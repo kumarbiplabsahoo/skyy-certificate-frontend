@@ -25,6 +25,7 @@ export default function SingleCertficate() {
     text,
     optionsForTitle,
     type,
+    fontFamily,
   } = UseSingle();
   const dispatch = useDispatch();
 
@@ -111,6 +112,7 @@ export default function SingleCertficate() {
           placeholders: cleanedPlaceholders,
           textFormat: generatedText,
           styleFormat: cssEditorContent,
+          fontFamily: fontFamily,
         };
 
         // 2. Create certificate in backend

@@ -237,9 +237,13 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
           {
             label: "Single",
             icon: "📄",
-            onClick: () => alert("Faculty1 Single"),
+            onClick: () => navigate("/single/facultyone"),
           },
-          { label: "Bulk", icon: "📁", onClick: () => alert("Faculty1 Bulk") },
+          {
+            label: "Bulk",
+            icon: "📁",
+            onClick: () => navigate("/bulk/facultyone"),
+          },
         ],
       },
       {
@@ -249,9 +253,13 @@ export default function ButtomDrawer({ sideDrawToggle, setSideDrawToggle }) {
           {
             label: "Single",
             icon: "📄",
-            onClick: () => alert("Faculty2 Single"),
+            onClick: () => navigate("/single/facultytwo"),
           },
-          { label: "Bulk", icon: "📁", onClick: () => alert("Faculty2 Bulk") },
+          {
+            label: "Bulk",
+            icon: "📁",
+            onClick: () => navigate("/bulk/facultytwo"),
+          },
         ],
       },
     ],

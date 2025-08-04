@@ -122,6 +122,7 @@ export const UseSingle = () => {
       const obj = {
         tempName: type,
         textFormat: updatedText,
+        fontFamily: fontFamily
       };
       const response = await updateTextCertificateTemp(obj);
       const { data, message } = response;

@@ -1,0 +1,145 @@
+.certNumberBox {
+  position: absolute;
+  top: 10%;
+  left: 8%;
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.7vw;
+  color: black;
+}
+
+.collegeImg {
+  position: absolute;
+  top: 12%;
+  right: 5%;
+  padding: 4px;
+  width: 96%;
+  height: 20%;
+}
+
+.collegeImg .imgCollage {
+  width: 15%;
+  object-fit: contain;
+  float: right;
+}
+
+.qrCodeBox {
+  position: absolute;
+  top: 28%;
+  left: 10%;
+  background: white;
+  padding: 4px;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.studentNameBox {
+  position: absolute;
+  top: 44%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.studentName {
+  font-family: "Dutch801", serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.8vw;
+  color: #cba65a;
+  margin-bottom: 1%;
+}
+
+/* Signature Section Styles */
+/* Signature Section Styles */
+.signatureWrapper {
+  position: absolute;
+  bottom: 5.5%;
+  left: 4%;
+  right: 4%;
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Base Signature Container */
+.signatureContainer {
+  width: 22%; /* Slightly reduced to accommodate spacer */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Special Spacer between 2nd and 3rd columns */
+.signatureSpacer {
+  width: 2%; /* Adjusted from 7% to 2% for better control */
+  visibility: hidden;
+}
+
+/* Special adjustment for the third column */
+.signatureContainer:nth-child(4) {
+  /* Now the 4th element due to spacer */
+  margin-left: 0.8%; /* Fine right adjustment */
+}
+
+/* Signature Image Box */
+.signatureImageBox {
+  width: 100%;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 0;
+}
+
+/* Signature Image */
+.signatureImage {
+  width: 65%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+}
+
+/* Signature Text Details */
+.signatureDetails {
+  width: 100%;
+  text-align: center;
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 3px;
+}
+
+/* Title Text */
+.signatureTitle {
+  font-size: 0.52rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  padding: 0 2px;
+}
+
+/* Subtitle Text */
+.signatureSubtitle {
+  font-size: 0.42rem;
+  color: #444;
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 2px;
+  margin-top: 2px;
+}

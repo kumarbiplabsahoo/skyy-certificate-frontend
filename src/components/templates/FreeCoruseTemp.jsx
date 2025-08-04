@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, forwardRef } from "react";
+import { useRef, useEffect, forwardRef } from "react";
 import styles from "./FreeCource.module.css";
 import CertImage from "../../assets/svg/Free Course.svg";
 import QRCode from "react-qr-code";
@@ -12,6 +12,7 @@ const FreeCourceTemp = forwardRef(
       activeCSS,
       certData,
       textTemplate,
+      fontFamily
     },
     ref
   ) => {
@@ -112,6 +113,7 @@ const FreeCourceTemp = forwardRef(
             <div className="text-overlay">
               <div
                 className="description"
+                style={{ fontFamily }}
                 dangerouslySetInnerHTML={{ __html: replacedText }}
               />
             </div>

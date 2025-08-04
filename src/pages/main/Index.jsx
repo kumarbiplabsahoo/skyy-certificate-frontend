@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { UseDash } from "../../hooks/useDash";
 import InlineLoader from "../../components/ui/InlineLoader";
 import { useNavigate } from "react-router-dom";
-// import { exportToPDF } from "../../utils/ExportPDF";
+import { exportToPDF } from "../../utils/ExportPDF";
 import { exportToExcel } from "../../utils/ExportExcel";
 import { exportToCSV } from "../../utils/ExportCSV";
 import Modal from "../../components/ui/Modal";
@@ -118,7 +118,7 @@ export default function Dashboard() {
 
     switch (type) {
       case "pdf":
-        // exportToPDF(dataToExport, "certificates", excludedFields);
+        exportToPDF(dataToExport, "certificates", excludedFields);
         break;
       case "xlsx":
         exportToExcel(dataToExport, "certificates", excludedFields);

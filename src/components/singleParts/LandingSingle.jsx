@@ -19,7 +19,8 @@ import { useBreadcrumb } from "../../hooks/useBreadcrumb";
 
 import { useSelector } from "react-redux";
 import InlineLoader from "../ui/InlineLoader";
-
+import FacultyOneTemp from "../templates/FacultyOneTemp";
+import FacultyTwoTemp from "../templates/FacultyTwoTemp";
 
 export default function LandingSingle({
   fieldConfigs,
@@ -54,7 +55,6 @@ export default function LandingSingle({
     setTextColor,
     tempSetting,
     handleTempSetting,
- 
   } = UseSingle();
 
   const crumbs = useBreadcrumb();
@@ -102,11 +102,15 @@ export default function LandingSingle({
         return <BonafiedTemp {...props} />;
       case "clearance":
         return <ClearanceTemp {...props} />;
+      case "facultyone":
+        return <FacultyOneTemp {...props} />;
+      case "facultytwo":
+        return <FacultyTwoTemp {...props} />;
       default:
         return <div>Invalid template type</div>;
     }
   };
- 
+
   return (
     <div className={styles.singleCertificate}>
       <div className={styles.header}>
